@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./page/index.css" />
+    <title>Место</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img
+          src="./images/header-logo.svg"
+          alt="логотип проекта Место России."
+          class="header__logo"
+        />
+      </header>
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./images/profile-images.jpg"
+            alt="фотография профиля."
+            class="avatar"
+          />
+          <div class="profile__info">
+            <h1 class="profile__title profile__title_name">Жак-Ив Кусто</h1>
+            <p class="profile__subtitle profile__subtitle_job">
+              Исследователь океана
+            </p>
+            <button class="button button_item_edit button_popup"></button>
+          </div>
+          <button class="button button_item_add"></button>
+        </section>
+        <section class="places">
+          <div class="place">
+            <img
+              src="./images/blue-lakes-lukhovitsy.jpg"
+              alt="рассвет, хвойный лес, озеро."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">Голубые озера</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+          <div class="place">
+            <img
+              src="./images/drunken-forest-rzn.jpg"
+              alt="пьяный лес Рязань."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">Пьяный лес</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+          <div class="place">
+            <img
+              src="./images/fishing-village.jpg"
+              alt="Рязань рябатская деревня."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">Рыбатская деревня</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+          <div class="place">
+            <img
+              src="./images/monument-VDV-rzn.jpg"
+              alt="Памятник ВДВ Рязань."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">Памятник ВДВ</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+          <div class="place">
+            <img
+              src="./images/home-Esenin.jpg"
+              alt="Дом Сергея Александровича Есенин."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">Дом Есенина А.С.</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+          <div class="place">
+            <img
+              src="./images/in_some_kingdom.jpg"
+              alt="Развлекательный парк отель."
+              class="place__image"
+            />
+            <div class="place__content">
+              <h3 class="place__title">В некотором царстве</h3>
+              <img
+                src="./images/like.svg"
+                alt="сердечко."
+                class="place__icon"
+              />
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
+      </footer>
+    </div>
+    <div class="popup">
+      <div class="popup__content">
+        <button class="popup__close"></button>
+        <form class="form form_js">
+          <h3 class="form__title">Редактировать профиль</h3>
+
+          <input type="text" class="form__input form__input_popup_name" />
+          <input type="text" class="form__input form__input_popup_job" />
+          <button type="submit" class="form__submit-btn form__submit-btn_add">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </div>
+    <script src="./script/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+.button_item_edit {
+  width: 24px;
+  height: 24px;
+  background-image: url(../../../images/button-edit.svg);
+  background-position: center;
+  margin-left: 18px;
+  align-self: end;
+  opacity: 1;
+  transition: opacity 0.7s;
+}
+
+.button_item_edit:hover {
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 768px) {
+  .button_item_edit {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .button_item_edit {
+    width: 18px;
+    height: 18px;
+    background-size: 7.5px 7.5px;
+  }
+}

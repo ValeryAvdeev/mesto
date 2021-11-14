@@ -1,0 +1,123 @@
+/* 
+===========
+Vendor
+===========
+ */
+
+@import url(../vendor/normalize.css);
+
+/* 
+===========
+Fonts
+===========
+ */
+
+@import url(../fonts/inter/inter.css);
+
+/* 
+===========
+Page
+===========
+ */
+
+@import url(../blocks/page/page.css);
+
+/* 
+===========
+Content
+===========
+ */
+
+@import url(../blocks/content/content.css);
+
+/* 
+===========
+Header
+===========
+ */
+
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__logo/header__logo.css);
+
+/* 
+===========
+Profile
+===========
+ */
+
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__info/profile__info.css);
+
+/* 
+===========
+Avatar
+===========
+ */
+
+@import url(../blocks/avatar/avatar.css);
+
+/* 
+===========
+Places
+===========
+ */
+
+@import url(../blocks/places/places.css);
+
+/* 
+===========
+Place
+===========
+ */
+
+@import url(../blocks/place/place.css);
+@import url(../blocks/place/__content/place__content.css);
+@import url(../blocks/place/__title/place__title.css);
+@import url(../blocks/place/__icon/place__icon.css);
+@import url(../blocks/place/__image/place__image.css);
+
+/* 
+===========
+Button
+===========
+*/
+@import url(../blocks/button/button.css);
+@import url(../blocks/button/_item/button_item_add.css);
+@import url(../blocks/button/_item/button_item_edit.css);
+@import url(../blocks/button-icon/button-icon.css);
+@import url(../blocks/button-icon/_vector/button-icon_vector_add.css);
+@import url(../blocks/button-icon/_vector/button-icon_vector_edit.css);
+
+/* 
+===========
+Footer
+===========
+*/
+
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__link/footer__link.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
+
+/* 
+===========
+Popup
+===========
+*/
+
+@import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_open/popup_open.css);
+@import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/__close/popup__close.css);
+
+/* 
+===========
+Form
+===========
+*/
+
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__title/form__title.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__submit-btn/form__submit-btn.css);
