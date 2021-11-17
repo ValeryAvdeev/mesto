@@ -27,9 +27,7 @@ jobInput.value = jodProfile.textContent;
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  // Получите значение полей jobInput и nameInput из свойства value
-  // Выберите элементы, куда должны быть вставлены значения полей
-  // Вставьте новые значения с помощью textContent
+
   nameProfile.textContent = nameInput.value;
   jodProfile.textContent = jobInput.value;
 

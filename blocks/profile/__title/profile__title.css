@@ -10,9 +10,6 @@
   align-self: end;
   grid-column: 1;
   grid-row: 1;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {
@@ -20,13 +17,13 @@
     max-width: 240px;
     font-size: 33px;
     line-height: 42px;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 
 @media screen and (max-width: 320px) {
   .profile__title {
-    max-width: 189px;
+    max-width: 282px;
     font-size: 27px;
     line-height: 33px;
   }

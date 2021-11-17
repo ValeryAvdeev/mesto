@@ -5,3 +5,9 @@
   align-items: center;
   margin: 25px 15px 31px 21px;
 }
+
+@media screen and (max-width: 320px) {
+  .place__content{
+    margin: 25px 21px 30px 15px;
+  }
+}
