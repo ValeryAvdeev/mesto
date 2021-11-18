@@ -12,7 +12,6 @@
   grid-row: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 294px;
   overflow: hidden;
 }
 
