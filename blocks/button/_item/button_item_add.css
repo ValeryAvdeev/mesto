@@ -4,6 +4,8 @@
   height: 50px;
   background-image: url(../../../images/Add_Button.svg);
   background-position: center;
+  border: 2px solid #fff;
+  border-radius: 2px;
   margin-left: auto;
   align-self: flex-start;
   opacity: 1;
@@ -11,7 +13,7 @@
 }
 
 .button_item_add:hover {
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {

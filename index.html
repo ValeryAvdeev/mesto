@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./page/index.css" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
   <body>
@@ -21,17 +21,14 @@
           <img
             src="./images/profile-images.jpg"
             alt="фотография профиля."
-            class="avatar"
+            class="profile__avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__title profile__title_name">Жак-Ив Кусто</h1>
-            <button
-              type="button"
-              class="button button_item_edit button_popup"
-            ></button>
-            <p class="profile__subtitle profile__subtitle_job">Исследователь океана</p>
+            <h1 class="profile__title profile__title_popup_name">Жак-Ив Кусто</h1>
+            <button type="button" aria-label="Кнопка редактирования профиля" class="button button_item_edit"></button>
+            <p class="profile__subtitle profile__subtitle_popup_job">Исследователь океана</p>
           </div>
-          <button type="button" class="button button_item_add"></button>
+          <button type="button" aria-label="Кнопка добавления контента" class="button button_item_add"></button>
         </section>
         <section class="places">
           <div class="place">
@@ -41,12 +38,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">Голубые озера</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">Голубые озера</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
           <div class="place">
@@ -56,12 +49,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">Пьяный лес</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">Пьяный лес</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
           <div class="place">
@@ -71,12 +60,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">Рыбатская деревня</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">Рыбатская деревня</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
           <div class="place">
@@ -86,12 +71,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">Памятник ВДВ</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">Памятник ВДВ</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
           <div class="place">
@@ -101,12 +82,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">Дом Есенина А.С.</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">Дом Есенина А.С.</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
           <div class="place">
@@ -116,12 +93,8 @@
               class="place__image"
             />
             <div class="place__content">
-              <h3 class="place__title">В некотором царстве</h3>
-              <img
-                src="./images/like.svg"
-                alt="сердечко."
-                class="place__icon"
-              />
+              <h4 class="place__title">В некотором царстве</h4>
+              <button type="button" class="button button_item_like"></button>
             </div>
           </div>
         </section>
@@ -132,23 +105,23 @@
     </div>
     <div class="popup">
       <div class="popup__content">
-        <button type="button" class="popup__close"></button>
-        <form class="form form_js">
+        <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close"></button>
+        <form name="popup" class="form">
           <h3 class="form__title">Редактировать профиль</h3>
 
           <input
             type="text"
             name="name"
+            placeholder="Имя"
             class="form__input form__input_popup_name"
           />
           <input
             type="text"
             name="job"
+            placeholder="Род деятельности"
             class="form__input form__input_popup_job"
           />
-          <button type="submit" class="form__submit-btn form__submit-btn_add">
-            Сохранить
-          </button>
+          <button type="submit" class="form__submit-btn">Сохранить</button>
         </form>
       </div>
     </div>

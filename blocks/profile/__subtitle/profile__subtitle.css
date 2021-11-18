@@ -8,6 +8,9 @@
   max-width: 336px;
   margin: 0;
   grid-row: 2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 768px) {

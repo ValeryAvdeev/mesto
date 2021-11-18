@@ -1,4 +1,5 @@
 .place__title {
+  max-width: 193px;
   margin: 0;
   font-family: "Inter", "Arial", sans-serif;
   font-style: normal;
