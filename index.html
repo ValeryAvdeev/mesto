@@ -31,83 +31,19 @@
           <button type="button" aria-label="Кнопка добавления контента" class="button button_item_add"></button>
         </section>
         <section class="places">
-          <div class="place">
-            <img
-              src="./images/blue-lakes-lukhovitsy.jpg"
-              alt="рассвет, хвойный лес, озеро."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">Голубые озера</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img
-              src="./images/drunken-forest-rzn.jpg"
-              alt="пьяный лес Рязань."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">Пьяный лес</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img
-              src="./images/fishing-village.jpg"
-              alt="Рязань рябатская деревня."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">Рыбатская деревня</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img
-              src="./images/monument-VDV-rzn.jpg"
-              alt="Памятник ВДВ Рязань."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">Памятник ВДВ</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img
-              src="./images/home-Esenin.jpg"
-              alt="Дом Сергея Александровича Есенин."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">Дом Есенина А.С.</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
-          <div class="place">
-            <img
-              src="./images/in_some_kingdom.jpg"
-              alt="Развлекательный парк отель."
-              class="place__image"
-            />
-            <div class="place__content">
-              <h2 class="place__title">В некотором царстве</h2>
-              <button type="button" class="button button_item_like"></button>
-            </div>
-          </div>
+
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup">
+    <div class="popup popup_profile">
       <div class="popup__content">
-        <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close"></button>
-        <form name="popup" class="form">
-          <h3 class="form__title">Редактировать профиль</h3>
+        <button type="button" aria-label="Кнопка закрытия редактора формы"
+                class="popup__close popup__close_edit"></button>
+        <form name="popup" class="form form_profile">
+          <h3 class="form__title form__title_edit">Редактировать профиль</h3>
 
           <input
             type="text"
@@ -121,10 +57,59 @@
             placeholder="Род деятельности"
             class="form__input form__input_popup_job"
           />
-          <button type="submit" class="form__submit-btn">Сохранить</button>
+          <button type="submit" class="form__submit form__submit_btn_edit">Сохранить</button>
         </form>
       </div>
     </div>
+
+    <div class="popup popup_place">
+      <div class="popup__content">
+        <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close popup__close_place"></button>
+        <form name="popup" class="form form_place">
+          <h3 class="form__title">Новое место</h3>
+          <input
+                  type="text"
+                  name="title"
+                  placeholder="Название"
+                  class="form__input form__input_popup_title"
+          />
+          <input
+                  type="text"
+                  name="image"
+                  placeholder="Ссылка на картинку"
+                  class="form__input form__input_popup_image"
+          />
+          <button type="submit" class="form__submit form__submit_btn_add">Создать</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup-img popup_image">
+      <div class="popup__content-image">
+      <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close popup__close_place-img"></button>
+      <figure class="figure-open-place">
+        <img src=""
+             alt=""
+             class="place__image-popup"
+        >
+        <figcaption class="place__title-popup"></figcaption>
+      </figure>
+    </div>
+    </div>
+    <template class="place-template">
+      <div class="place">
+        <button class="button button_item_delete" type="button"></button>
+        <img
+                src=""
+                alt="картинка."
+                class="place__image"
+        />
+        <div class="place__content">
+          <h2 class="place__title"></h2>
+          <button type="button" class="button button_item_like"></button>
+        </div>
+      </div>
+    </template>
     <script src="./script/index.js"></script>
   </body>
 </html>
