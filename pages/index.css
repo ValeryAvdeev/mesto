@@ -92,6 +92,26 @@ Popup
 
 /* 
 ===========
+Popup-img
+===========
+*/
+
+@import url(../blocks/popup-img/popup-img.css);
+@import url(../blocks/popup-img/_open/popup-img_open.css);
+@import url(../blocks/popup-img/__content/popup-img__content.css);
+
+/*
+===========
+Figure
+===========
+*/
+
+@import url(../blocks/figure/figure.css);
+@import url(../blocks/figure/__image/figure__image.css);
+@import url(../blocks/figure/__title/figure__title.css);
+
+/* 
+===========
 Form
 ===========
 */

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./pages/index.css" />
+    <script src="./script/index.js" defer></script>
     <title>Место</title>
   </head>
   <body>
@@ -31,20 +32,21 @@
           <button type="button" aria-label="Кнопка добавления контента" class="button button_item_add"></button>
         </section>
         <section class="places">
-
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
       </footer>
     </div>
-    <div class="popup popup_profile">
-      <div class="popup__content">
-        <button type="button" aria-label="Кнопка закрытия редактора формы"
-                class="popup__close popup__close_edit"></button>
-        <form name="popup" class="form form_profile">
-          <h3 class="form__title form__title_edit">Редактировать профиль</h3>
 
+    <div class="popup popup_element_profile">
+      <div class="popup__content">
+        <button type="button"
+                aria-label="Кнопка закрытия редактора формы"
+                class="popup__close popup__close_element_edit">
+        </button>
+        <form name="popup" class="form form_profile">
+          <h3 class="form__title form__title_element_edit">Редактировать профиль</h3>
           <input
             type="text"
             name="name"
@@ -57,15 +59,22 @@
             placeholder="Род деятельности"
             class="form__input form__input_popup_job"
           />
-          <button type="submit" class="form__submit form__submit_btn_edit">Сохранить</button>
+          <button
+                  type="submit"
+                  class="form__submit form__submit_btn_edit">
+            Сохранить
+          </button>
         </form>
       </div>
     </div>
 
-    <div class="popup popup_place">
+    <div class="popup popup_element_place">
       <div class="popup__content">
-        <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close popup__close_place"></button>
-        <form name="popup" class="form form_place">
+        <button type="button"
+                aria-label="Кнопка закрытия редактора формы"
+                class="popup__close popup__close_element_place">
+        </button>
+        <form name="popup" class="form form_element_place">
           <h3 class="form__title">Новое место</h3>
           <input
                   type="text"
@@ -79,23 +88,30 @@
                   placeholder="Ссылка на картинку"
                   class="form__input form__input_popup_image"
           />
-          <button type="submit" class="form__submit form__submit_btn_add">Создать</button>
+          <button
+                  type="submit"
+                  class="form__submit form__submit_btn_add">
+            Создать
+          </button>
         </form>
       </div>
     </div>
 
-    <div class="popup-img popup_image">
-      <div class="popup__content-image">
-      <button type="button" aria-label="Кнопка закрытия редактора формы" class="popup__close popup__close_place-img"></button>
-      <figure class="figure-open-place">
-        <img src=""
-             alt=""
-             class="place__image-popup"
-        >
-        <figcaption class="place__title-popup"></figcaption>
+    <div class="popup-img popup_element_image">
+      <div class="popup-img__content">
+      <button
+              type="button"
+              aria-label="Кнопка закрытия редактора формы"
+              class="popup__close popup__close_place_img">
+      </button>
+      <figure class="figure">
+        <img src="#" alt="картинка." class="figure__image"/>
+        <figcaption class="figure__title"></figcaption>
       </figure>
     </div>
     </div>
+
+
     <template class="place-template">
       <div class="place">
         <button class="button button_item_delete" type="button"></button>
@@ -110,6 +126,5 @@
         </div>
       </div>
     </template>
-    <script src="./script/index.js"></script>
   </body>
 </html>
