@@ -48,8 +48,8 @@ const imgForm = formElementPlace.querySelector('.form__input_popup_image');
 const placeTemplate = document.querySelector('.place-template');
 const placesList = document.querySelector('.places');
 
-const popupImg = document.querySelector('.popup_element_image');
-const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
+const popupImg = document.querySelector('.popup-img_element_image');
+const popupCloseBtnImg = popupImg.querySelector('.popup-img__close_place_img');
 
 function render() {
   const html = initialCards.map((item) => {

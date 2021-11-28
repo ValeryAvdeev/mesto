@@ -97,6 +97,7 @@ Popup-img
 */
 
 @import url(../blocks/popup-img/popup-img.css);
+@import url(../blocks/popup-img/__close/popup-img__close.css);
 @import url(../blocks/popup-img/_open/popup-img_open.css);
 @import url(../blocks/popup-img/__content/popup-img__content.css);
 
