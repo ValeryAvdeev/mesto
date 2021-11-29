@@ -31,7 +31,7 @@ const popupProfile = document.querySelector(".popup_element_profile");
 const popupCloseBtnEdit = popupProfile.querySelector(".popup__close_element_edit");
 
 const nameProfile = document.querySelector(".profile__title_popup_name");
-const jodProfile = document.querySelector(".profile__subtitle_popup_job");
+const jobProfile = document.querySelector(".profile__subtitle_popup_job");
 
 const formElementProfile = document.querySelector(".form_profile");
 const nameInput = formElementProfile.querySelector(".form__input_popup_name");
@@ -51,11 +51,21 @@ const placesList = document.querySelector('.places');
 const popupImg = document.querySelector('.popup-img_element_image');
 const popupCloseBtnImg = popupImg.querySelector('.popup-img__close_place_img');
 
+// initialCards.forEach((element) => {
+//   const card = placeTemplate.content.cloneNode(true);
+//
+//   card.querySelector('.place__title').textContent = element.name;
+//   card.querySelector('.place__image').src = element.link;
+//
+//   placesList.append(card);
+// })
+
+
 function render() {
-  const html = initialCards.map((item) => {
-        return getItem(item);
-      })
-  placesList.append(...html);
+  const cards = initialCards.map((item) => {
+    return getItem(item);
+  })
+  placesList.append(...cards);
 }
 
 function getItem(item) {
@@ -72,14 +82,13 @@ function getItem(item) {
   const btnDelPlase = newItem.querySelector('.button_item_delete');
   btnDelPlase.addEventListener('click', handleDelete);
 
+  const imgPopupPlace = document.querySelector('.figure__image');
+  const titlePopupPlace = document.querySelector('.figure__title');
   imageElement.addEventListener('click', function () {
-    openPopup(popupImg);
-
-    const imgPopupPlace = document.querySelector('.figure__image');
-    const titlePopupPlace = document.querySelector('.figure__title');
-
     titlePopupPlace.textContent = titleElement.textContent;
     imgPopupPlace.src = imageElement.src;
+
+    openPopup(popupImg);
   })
 
   return newItem;
@@ -95,34 +104,31 @@ function handleDelete(evt) {
     placeItem.remove();
 }
 
-function openPopup(item) {
-  if(item === popupProfile) {
-    popupProfile.classList.add("popup_open");
+function openPopup(popup) {
+    popup.classList.add("popup_open");
     nameInput.value = nameProfile.textContent;
-    jobInput.value = jodProfile.textContent;
-  } else if(item === popupPlace) {
-    popupPlace.classList.add('popup_open');
-  } else {
-    popupImg.classList.add('popup-img_open');
-  }
+    jobInput.value = jobProfile.textContent;
+    popup.classList.add('popup_open');
+    popup.classList.add('popup-img_open');
+
 }
 
-function closePopup() {
-  popupProfile.classList.remove("popup_open");
-  popupPlace.classList.remove("popup_open");
-  popupImg.classList.remove('popup-img_open');
+function closePopup(popup) {
+  popup.classList.remove("popup_open");
+  popup.classList.remove("popup_open");
+  popup.classList.remove('popup-img_open');
 }
 
-function formSubmitHandler(evt) {
+function handleProfileSubmit(evt) {
   evt.preventDefault();
 
   nameProfile.textContent = nameInput.value;
-  jodProfile.textContent = jobInput.value;
+  jobProfile.textContent = jobInput.value;
 
-  closePopup();
+  closePopup(popupProfile);
 }
 
-function handlerAddPlace (evt) {
+function handleAddPlace (evt) {
   evt.preventDefault();
 
   const inputFormTitle = titleForm.value;
@@ -138,16 +144,16 @@ function handlerAddPlace (evt) {
   titleForm.value = '';
   imgForm.value = '';
 
-  closePopup();
+  closePopup(popupPlace);
 }
 
-formElementPlace.addEventListener('submit', handlerAddPlace);
-formElementProfile.addEventListener("submit", formSubmitHandler);
+formElementPlace.addEventListener('submit', handleAddPlace);
+formElementProfile.addEventListener("submit", handleProfileSubmit);
 btnPopupEdit.addEventListener("click", () => {openPopup(popupProfile)});
 btnPopupAdd.addEventListener('click', () => {openPopup(popupPlace)});
-popupCloseBtnEdit.addEventListener("click", closePopup);
-popupCloseBtnPlace.addEventListener("click", closePopup);
-popupCloseBtnImg.addEventListener('click', closePopup);
+popupCloseBtnEdit.addEventListener("click", () => {closePopup(popupProfile)});
+popupCloseBtnPlace.addEventListener("click", () => {closePopup(popupPlace)});
+popupCloseBtnImg.addEventListener('click', () => {closePopup(popupImg)});
 
 render();
 
