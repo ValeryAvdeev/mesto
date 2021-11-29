@@ -51,16 +51,6 @@ const placesList = document.querySelector('.places');
 const popupImg = document.querySelector('.popup-img_element_image');
 const popupCloseBtnImg = popupImg.querySelector('.popup-img__close_place_img');
 
-// initialCards.forEach((element) => {
-//   const card = placeTemplate.content.cloneNode(true);
-//
-//   card.querySelector('.place__title').textContent = element.name;
-//   card.querySelector('.place__image').src = element.link;
-//
-//   placesList.append(card);
-// })
-
-
 function render() {
   const cards = initialCards.map((item) => {
     return getItem(item);
@@ -108,7 +98,9 @@ function openPopup(popup) {
     popup.classList.add("popup_open");
     nameInput.value = nameProfile.textContent;
     jobInput.value = jobProfile.textContent;
+
     popup.classList.add('popup_open');
+
     popup.classList.add('popup-img_open');
 
 }
