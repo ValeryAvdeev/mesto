@@ -5,11 +5,3 @@
     padding: 0;
     background: none;
 }
-
-@media screen and (max-width: 570px) {
-    .popup__content_type_image {
-        max-width: 75vw;
-        max-height: 75vh;
-        padding: 0;
-    }
-}
