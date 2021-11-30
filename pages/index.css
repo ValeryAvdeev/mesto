@@ -86,20 +86,11 @@ Popup
 */
 
 @import url(../blocks/popup/popup.css);
+@import url(../blocks/popup/_type/popup_type_image.css);
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/popup/__content/popup__content.css);
+@import url(../blocks/popup/__content/_type/popup__content_type_image.css);
 @import url(../blocks/popup/__close/popup__close.css);
-
-/* 
-===========
-Popup-img
-===========
-*/
-
-@import url(../blocks/popup-img/popup-img.css);
-@import url(../blocks/popup-img/__close/popup-img__close.css);
-@import url(../blocks/popup-img/_open/popup-img_open.css);
-@import url(../blocks/popup-img/__content/popup-img__content.css);
 
 /*
 ===========

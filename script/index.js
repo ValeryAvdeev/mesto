@@ -48,8 +48,8 @@ const imgForm = formElementPlace.querySelector('.form__input_popup_image');
 const placeTemplate = document.querySelector('.place-template');
 const placesList = document.querySelector('.places');
 
-const popupImg = document.querySelector('.popup-img_element_image');
-const popupCloseBtnImg = popupImg.querySelector('.popup-img__close_place_img');
+const popupImg = document.querySelector('.popup_element_image');
+const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
 
 function render() {
   const cards = initialCards.map((item) => {
@@ -65,6 +65,7 @@ function getItem(item) {
 
   titleElement.textContent = item.name;
   imageElement.src = item.link;
+  imageElement.alt = titleElement.textContent;
 
   const btnLikePlase = newItem.querySelector('.button_item_like');
   btnLikePlase.addEventListener('click', handleLike);
@@ -77,6 +78,7 @@ function getItem(item) {
   imageElement.addEventListener('click', function () {
     titlePopupPlace.textContent = titleElement.textContent;
     imgPopupPlace.src = imageElement.src;
+    imgPopupPlace.alt = titlePopupPlace.textContent;
 
     openPopup(popupImg);
   })
@@ -96,19 +98,10 @@ function handleDelete(evt) {
 
 function openPopup(popup) {
     popup.classList.add("popup_open");
-    nameInput.value = nameProfile.textContent;
-    jobInput.value = jobProfile.textContent;
-
-    popup.classList.add('popup_open');
-
-    popup.classList.add('popup-img_open');
-
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_open");
-  popup.classList.remove("popup_open");
-  popup.classList.remove('popup-img_open');
 }
 
 function handleProfileSubmit(evt) {
@@ -125,7 +118,6 @@ function handleAddPlace (evt) {
 
   const inputFormTitle = titleForm.value;
   const inputFormImg = imgForm.value;
-
   const placeItem = getItem({
     name: inputFormTitle,
     link: inputFormImg
@@ -141,8 +133,14 @@ function handleAddPlace (evt) {
 
 formElementPlace.addEventListener('submit', handleAddPlace);
 formElementProfile.addEventListener("submit", handleProfileSubmit);
-btnPopupEdit.addEventListener("click", () => {openPopup(popupProfile)});
+
+btnPopupEdit.addEventListener("click", () => {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+  openPopup(popupProfile)
+});
 btnPopupAdd.addEventListener('click', () => {openPopup(popupPlace)});
+
 popupCloseBtnEdit.addEventListener("click", () => {closePopup(popupProfile)});
 popupCloseBtnPlace.addEventListener("click", () => {closePopup(popupPlace)});
 popupCloseBtnImg.addEventListener('click', () => {closePopup(popupImg)});
