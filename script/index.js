@@ -113,9 +113,6 @@ function handleAddPlace(evt) {
 }
 
 function closePopupEsc(evt, popup) {
-  console.log(evt)
-  console.log(popup)
-
   if(evt.key === 'Escape') closePopup(popup)
 }
 
