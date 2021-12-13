@@ -4,4 +4,5 @@
   box-sizing: border-box;
   opacity: .2;
   color: #000;
+  cursor: default;
 }
