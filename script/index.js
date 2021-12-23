@@ -79,7 +79,7 @@ function openPopup(popup) {
 }
 
 function buttonDoDisabled() {
-  const buttonCreatePlace = document.querySelector('.form__submit_btn_add');
+  const buttonCreatePlace =   document.querySelector('.form__submit_btn_add');
   buttonCreatePlace.classList.add('form__submit_disabled');
 }
 
@@ -109,6 +109,7 @@ function handleAddPlace(evt) {
   })
 
   placesList.prepend(placeItem);
+
   titleForm.value = '';
   imgForm.value = '';
 
