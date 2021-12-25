@@ -1,4 +1,13 @@
 import initialCards from './initialCards.js';
+import Card from "./Card.js";
+
+const placesList = document.querySelector('.places');
+
+initialCards.forEach(element => {
+  const card = new Card( '.place-template', element.name, element.link);
+  const cardEl = card.getView();
+  placesList.append(cardEl);
+})
 
 const btnPopupEdit = document.querySelector(".button_item_edit");
 const popupProfile = document.querySelector(".popup_element_profile");
@@ -21,57 +30,44 @@ const formElementPlace = document.querySelector('.form_element_place');
 const titleForm = formElementPlace.querySelector('.form__input_popup_title');
 const imgForm = formElementPlace.querySelector('.form__input_popup_image');
 
-const placeTemplate = document.querySelector('.place-template');
-const placesList = document.querySelector('.places');
-
 const popupImg = document.querySelector('.popup_element_image');
 const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
 const popupOverlayImg = popupImg.querySelector('.popup__overlay_select_image');
-
-function render() {
-  const cards = initialCards.map((item) => {
-    return getItem(item);
-  })
-  placesList.append(...cards);
-}
-
-function getItem(item) {
-  const newItem = placeTemplate.cloneNode(true).content;
-  const titleElement = newItem.querySelector('.place__title');
-  const imageElement = newItem.querySelector('.place__image');
-
-  titleElement.textContent = item.name;
-  imageElement.src = item.link;
-  imageElement.alt = titleElement.textContent;
-
-  const btnLikePlase = newItem.querySelector('.button_item_like');
-  btnLikePlase.addEventListener('click', handleLike);
-
-  const btnDelPlase = newItem.querySelector('.button_item_delete');
-  btnDelPlase.addEventListener('click', handleDelete);
-
-  const imgPopupPlace = document.querySelector('.figure__image');
-  const titlePopupPlace = document.querySelector('.figure__title');
-  imageElement.addEventListener('click', function () {
-    titlePopupPlace.textContent = titleElement.textContent;
-    imgPopupPlace.src = imageElement.src;
-    imgPopupPlace.alt = titlePopupPlace.textContent;
-
-    openPopup(popupImg);
-  });
-
-  return newItem;
-}
-
-function handleLike(evt) {
-  evt.target.classList.toggle('button_item_like-active');
-}
-
-function handleDelete(evt) {
-  const delTarget = evt.target;
-  const placeItem = delTarget.closest('.place');
-  placeItem.remove();
-}
+//
+// function render() {
+//   const cards = initialCards.map((item) => {
+//     return getItem(item);
+//   })
+//   placesList.append(...cards);
+// }
+//
+// function getItem(item) {
+//   const newItem = placeTemplate.cloneNode(true).content;
+//   const titleElement = newItem.querySelector('.place__title');
+//   const imageElement = newItem.querySelector('.place__image');
+//
+//   titleElement.textContent = item.name;
+//   imageElement.src = item.link;
+//   imageElement.alt = titleElement.textContent;
+// //
+// //   const btnLikePlase = newItem.querySelector('.button_item_like');
+// //   btnLikePlase.addEventListener('click', handleLike);
+// //
+// //   const btnDelPlase = newItem.querySelector('.button_item_delete');
+// //   btnDelPlase.addEventListener('click', handleDelete);
+// //
+//   const imgPopupPlace = document.querySelector('.figure__image');
+//   const titlePopupPlace = document.querySelector('.figure__title');
+//   imageElement.addEventListener('click', function () {
+//     titlePopupPlace.textContent = titleElement.textContent;
+//     imgPopupPlace.src = imageElement.src;
+//     imgPopupPlace.alt = titlePopupPlace.textContent;
+//
+//     openPopup(popupImg);
+//   });
+//
+//   return newItem;
+// }
 
 function openPopup(popup) {
   popup.classList.add("popup_open");
@@ -86,7 +82,6 @@ function buttonDoDisabled() {
 function closePopup(popup) {
   popup.classList.remove("popup_open");
   document.removeEventListener('keydown', (evt) => closePopupEsc(evt, popup));
-
 }
 
 function handleProfileSubmit(evt) {
@@ -141,5 +136,16 @@ popupCloseBtnImg.addEventListener('click', () => closePopup(popupImg));
 popupOverlayProfile.addEventListener('click', () => closePopup(popupProfile));
 popupOverlayPlace.addEventListener('click', () => closePopup(popupPlace));
 popupOverlayImg.addEventListener('click', () => closePopup(popupImg));
+//
+// render();
 
-render();
+// function handleLike(evt) {
+//   evt.target.classList.toggle('button_item_like-active');
+// }
+//
+// function handleDelete(evt) {
+//   const delTarget = evt.target;
+//   const placeItem = delTarget.closest('.place');
+//   placeItem.remove();
+// }
+//
