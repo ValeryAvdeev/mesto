@@ -20,12 +20,7 @@ class Card {
     evt.target.classList.toggle('button_item_like-active');
   }
 
-  _handleDelete(evt) {
-    evt
-      .target
-      .closest('.place')
-      .remove();
-  }
+  _handleDelete = () => this._element.remove()
 
   _openPopup = () => {
 
@@ -41,11 +36,11 @@ class Card {
   }
 
   _setEventListeners() {
-    const btnLikePlase = this._element.querySelector('.button_item_like');
-    btnLikePlase.addEventListener('click', this._handleLike);
+    const buttonLikePlace = this._element.querySelector('.button_item_like');
+    buttonLikePlace.addEventListener('click', this._handleLike);
 
-    const btnDelPlase = this._element.querySelector('.button_item_delete');
-    btnDelPlase.addEventListener('click', this._handleDelete);
+    const buttonDeletePlace = this._element.querySelector('.button_item_delete');
+    buttonDeletePlace.addEventListener('click', this._handleDelete);
 
     const imgOpenPopup = this._element.querySelector('.place__image');
     imgOpenPopup.addEventListener('click', this._openPopup);
@@ -59,7 +54,6 @@ class Card {
     this._element.querySelector('.place__title').textContent = this._title;
     this._element.querySelector('.place__image').src = this._image;
     this._element.querySelector('.place__image').alt = this._title;
-
     return this._element;
   }
 }

@@ -1,11 +1,11 @@
 class FormValidator {
   constructor(config, form) {
+    this._form = form;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
-    this._form = form;
   }
 
   _showError(input) {
@@ -24,7 +24,7 @@ class FormValidator {
     input.classList.remove(this._inputErrorClass);
   }
 
-  _checkIfInputValid(input) {
+  _checkInputValid(input) {
     if (!input.validity.valid) {
       this._showError(input);
     } else {
@@ -38,6 +38,8 @@ class FormValidator {
 
   _toggleButtonError() {
     if (this._hasInvalidInput(this._inputs)) {
+      const buttonCreatePlace = document.querySelector('.form__submit_btn_add');
+      buttonCreatePlace.classList.add('form__submit_disabled');
       this._submitButton.classList.add(this._inactiveButtonClass);
       this._submitButton.disabled = true;
     } else {
@@ -52,10 +54,15 @@ class FormValidator {
 
     this._inputs.forEach((input) => {
       input.addEventListener('input', () => {
-        this._checkIfInputValid(input);
-        this._toggleButtonError(this._inputs, this._submitButton, this._inactiveButtonClass);
+        this._checkInputValid(input);
+        this._toggleButtonError();
       })
     })
+  }
+
+  disabledButton() {
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   }
 
   enableValidation() {

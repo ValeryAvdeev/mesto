@@ -2,15 +2,6 @@ import initialCards from './initialCards.js';
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
-
-const enableValidation = ({formSelector, ...rest}) => {
-  const forms = document.querySelectorAll(formSelector);
-  forms.forEach((form) => {
-    const validForm = new FormValidator(rest, form);
-    validForm.enableValidation();
-  })
-};
-
 const placesList = document.querySelector('.places');
 
 const btnPopupEdit = document.querySelector(".button_item_edit");
@@ -30,12 +21,26 @@ const popupCloseBtnPlace = popupPlace.querySelector('.popup__close_element_place
 const popupOverlayPlace = popupPlace.querySelector('.popup__overlay_select_place');
 
 const formElementPlace = document.querySelector('.form_element_place');
-const titleForm = document.querySelector('.form__input_popup_title');
+const titleInput = document.querySelector('.form__input_popup_title');
 const imgForm = document.querySelector('.form__input_popup_image');
 
 const popupImg = document.querySelector('.popup_element_image');
 const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
 const popupOverlayImg = popupImg.querySelector('.popup__overlay_select_image');
+
+const enableValidation = {
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'form__submit_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error_visible'
+};
+
+const editFormValidator = new FormValidator(enableValidation, formElementProfile);
+const cardFormValidator = new FormValidator(enableValidation, formElementPlace);
+
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
 initialCards.forEach(element => {
   const card = new Card('.place-template', element.name, element.link, openPopup);
@@ -44,25 +49,22 @@ initialCards.forEach(element => {
   placesList.append(cardEl);
 })
 
+
 function openPopup(popup) {
   popup.classList.add("popup_open");
-  document.addEventListener('keydown', (evt) => closePopupEsc(evt, popup));
+  document.addEventListener('keydown', closePopupEsc);
 }
 
-function closePopupEsc(evt, popup) {
+function closePopupEsc(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popup);
+    const onPopup = document.querySelector('.popup_open')
+    closePopup(onPopup);
   }
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_open");
-  document.removeEventListener('keydown', (evt) => closePopupEsc(evt, popup));
-}
-
-function buttonDoDisabled() {
-  const buttonCreatePlace = document.querySelector('.form__submit_btn_add');
-  buttonCreatePlace.classList.add('form__submit_disabled');
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 function handleProfileSubmit(evt) {
@@ -77,15 +79,15 @@ function handleProfileSubmit(evt) {
 function handleAddPlace(evt) {
   evt.preventDefault();
 
-  const placeItem = new Card('.place-template', titleForm.value, imgForm.value, openPopup);
+  const placeItem = new Card('.place-template', titleInput.value, imgForm.value, openPopup);
   const placeEl = placeItem.generateCard();
 
   placesList.prepend(placeEl);
 
-  titleForm.value = '';
+  titleInput.value = '';
   imgForm.value = '';
 
-  buttonDoDisabled();
+  cardFormValidator.disabledButton();
   closePopup(popupPlace);
 }
 
@@ -109,11 +111,4 @@ popupOverlayProfile.addEventListener('click', () => closePopup(popupProfile));
 popupOverlayPlace.addEventListener('click', () => closePopup(popupPlace));
 popupOverlayImg.addEventListener('click', () => closePopup(popupImg));
 
-enableValidation({
-  formSelector: '.form',
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__submit_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_visible'
-});
+
