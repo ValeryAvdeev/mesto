@@ -28,7 +28,7 @@ const popupImg = document.querySelector('.popup_element_image');
 const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
 const popupOverlayImg = popupImg.querySelector('.popup__overlay_select_image');
 
-const enableValidation = {
+const validationConfig = {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit',
   inactiveButtonClass: 'form__submit_disabled',
@@ -36,8 +36,8 @@ const enableValidation = {
   errorClass: 'form__error_visible'
 };
 
-const editFormValidator = new FormValidator(enableValidation, formElementProfile);
-const cardFormValidator = new FormValidator(enableValidation, formElementPlace);
+const editFormValidator = new FormValidator(validationConfig, formElementProfile);
+const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
