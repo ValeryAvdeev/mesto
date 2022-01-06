@@ -40,8 +40,7 @@ class FormValidator {
     if (this._hasInvalidInput(this._inputs)) {
       const buttonCreatePlace = document.querySelector('.form__submit_btn_add');
       buttonCreatePlace.classList.add('form__submit_disabled');
-      this._submitButton.classList.add(this._inactiveButtonClass);
-      this._submitButton.disabled = true;
+      this.disabledButton();
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;
@@ -61,7 +60,8 @@ class FormValidator {
   }
 
   disabledButton() {
-    this._toggleButtonError();
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.disabled = true;
   }
 
   enableValidation() {
