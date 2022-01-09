@@ -1,40 +1,43 @@
-import initialCards from './initialCards.js';
-import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import Card from "./components/Card.js";
+import FormValidator from "./components/FormValidator.js";
+import {
+  placesList,
+  btnPopupEdit,
+  popupProfile,
+  popupCloseBtnEdit,
+  popupOverlayProfile,
+  nameProfile,
+  jobProfile,
+  formElementProfile,
+  nameInput,
+  jobInput,
+  btnPopupAdd,
+  popupPlace,
+  popupCloseBtnPlace,
+  popupOverlayPlace,
+  formElementPlace,
+  titleInput,
+  imgForm,
+  popupImg,
+  popupCloseBtnImg,
+  popupOverlayImg,
+  validationConfig,
+  initialCards
+} from './utils/constants.js'
+import Section from "./components/Section.js";
 
-const placesList = document.querySelector('.places');
+const cardElement = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card('.place-template', item.name, item.link);
+    console.log(card)
+    const cardItem = card.generateCard();
 
-const btnPopupEdit = document.querySelector(".button_item_edit");
-const popupProfile = document.querySelector(".popup_element_profile");
-const popupCloseBtnEdit = popupProfile.querySelector(".popup__close_element_edit");
-const popupOverlayProfile = popupProfile.querySelector('.popup__overlay_select_profile');
-const nameProfile = document.querySelector(".profile__title_popup_name");
-const jobProfile = document.querySelector(".profile__subtitle_popup_job");
+    cardElement.addItem(cardItem);
+  }
+}, placesList);
 
-const formElementProfile = document.querySelector(".form_element_profile");
-const nameInput = document.querySelector(".form__input_popup_name");
-const jobInput = document.querySelector(".form__input_popup_job");
-
-const btnPopupAdd = document.querySelector('.button_item_add');
-const popupPlace = document.querySelector('.popup_element_place');
-const popupCloseBtnPlace = popupPlace.querySelector('.popup__close_element_place');
-const popupOverlayPlace = popupPlace.querySelector('.popup__overlay_select_place');
-
-const formElementPlace = document.querySelector('.form_element_place');
-const titleInput = document.querySelector('.form__input_popup_title');
-const imgForm = document.querySelector('.form__input_popup_image');
-
-const popupImg = document.querySelector('.popup_element_image');
-const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
-const popupOverlayImg = popupImg.querySelector('.popup__overlay_select_image');
-
-const validationConfig = {
-  inputSelector: '.form__input',
-  submitButtonSelector: '.form__submit',
-  inactiveButtonClass: 'form__submit_disabled',
-  inputErrorClass: 'form__input_type_error',
-  errorClass: 'form__error_visible'
-};
+cardElement.renderer();
 
 const editFormValidator = new FormValidator(validationConfig, formElementProfile);
 const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
@@ -42,12 +45,12 @@ const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
-initialCards.forEach(element => {
-  const card = new Card('.place-template', element.name, element.link, openPopup);
-  const cardEl = card.generateCard();
-
-  placesList.append(cardEl);
-})
+// initialCards.forEach(element => {
+//   const card = new Card('.place-template', element.name, element.link, openPopup);
+//   const cardEl = card.generateCard();
+//
+//   placesList.append(cardEl);
+// })
 
 
 function openPopup(popup) {
@@ -110,5 +113,3 @@ popupCloseBtnImg.addEventListener('click', () => closePopup(popupImg));
 popupOverlayProfile.addEventListener('click', () => closePopup(popupProfile));
 popupOverlayPlace.addEventListener('click', () => closePopup(popupPlace));
 popupOverlayImg.addEventListener('click', () => closePopup(popupImg));
-
-

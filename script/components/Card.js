@@ -1,3 +1,5 @@
+import { popupImg, imgPopupPlace, titlePopupPlace } from '../utils/constants.js';
+
 class Card {
   constructor(selector, title, image, onPopup) {
     this._selector = selector;
@@ -24,9 +26,9 @@ class Card {
 
   _openPopup = () => {
 
-    const popupImg = document.querySelector('.popup_element_image');
-    const imgPopupPlace = document.querySelector('.figure__image');
-    const titlePopupPlace = document.querySelector('.figure__title');
+    // const popupImg = document.querySelector('.popup_element_image');
+    // const imgPopupPlace = document.querySelector('.figure__image');
+    // const titlePopupPlace = document.querySelector('.figure__title');
 
     titlePopupPlace.textContent = this._title;
     imgPopupPlace.src = this._image;
