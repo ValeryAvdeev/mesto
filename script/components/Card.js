@@ -23,13 +23,13 @@ class Card {
   _handleDelete = () => this._element.remove()
 
   _openPopup = () => {
-    // const popupImg = document.querySelector('.popup_element_image');
-    // const imgPopupPlace = document.querySelector('.figure__image');
-    // const titlePopupPlace = document.querySelector('.figure__title');
-    //
-    // titlePopupPlace.textContent = this._title;
-    // imgPopupPlace.src = this._image;
-    // imgPopupPlace.alt = this._title;
+    const popupImg = document.querySelector('.popup_element_image');
+    const imgPopupPlace = document.querySelector('.figure__image');
+    const titlePopupPlace = document.querySelector('.figure__title');
+
+    titlePopupPlace.textContent = this._title;
+    imgPopupPlace.src = this._image;
+    imgPopupPlace.alt = this._title;
     this._handleCardClick(popupImg);
   }
 

@@ -13,8 +13,6 @@ import {
   jobInput,
   btnPopupAdd,
   popupPlace,
-  popupCloseBtnPlace,
-  popupOverlayPlace,
   formElementPlace,
   titleInput,
   imgForm,
@@ -40,9 +38,9 @@ const cardElement = new Section({
   items: initialCards,
   renderer: (item) => {
     // с НЕ реализованным классом ПОПАП
-    // const card = new Card('.place-template', item.name, item.link, openPopup);
+    const card = new Card('.place-template', item.name, item.link, openPopup);
     // с реализованным классом ПОПАП
-    const card = new Card('.place-template', item.name, item.link);
+    // const card = new Card('.place-template', item.name, item.link);
     const cardItem = card.generateCard();
 
     cardElement.addItem(cardItem);
@@ -50,8 +48,8 @@ const cardElement = new Section({
 }, placesList);
 
 // открытие попап картинки
-const popupWithImg = new PopupWithImage('.popup_element_image');
-popupWithImg.open();
+// const popupWithImg = new PopupWithImage('.popup_element_image');
+// popupWithImg.open();
 
 cardElement.renderer();
 editFormValidator.enableValidation();

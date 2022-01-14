@@ -5,21 +5,17 @@ class Popup {
   }
 
   _handleEscClose = (evt) => {
-    if (evt.key === 'Escape') {
-      this.close();
-
-    }
+    if (evt.key === 'Escape') this.close();
   }
 
   // добавляет слушатель клика иконке закрытия попапа и на затемнённую область вокруг формы
   setEventListeners() {
-    const popupCloseBtnPlace = popupPlace.querySelector('.popup__close_element_place');
+    const popupCloseBtnPlace = document.querySelector('.popup__close_element_place');
     popupCloseBtnPlace.addEventListener("click", () => this.close());
 
-    const popupOverlayPlace = popupPlace.querySelector('.popup__overlay_select_place');
+    const popupOverlayPlace = document.querySelector('.popup__overlay_select_place');
     popupOverlayPlace.addEventListener('click', () => this.close());
 
-    // this.close();
     // сразу открывает попап
     // popupCloseBtnEdit.addEventListener("click", () => this.close(popupProfile));
     // popupCloseBtnImg.addEventListener('click', () => this.close(popupImg));
@@ -28,7 +24,6 @@ class Popup {
   }
 
   open() {
-    console.log(`class Popup`)
     this._selector.classList.add('popup_open');
     document.addEventListener('keydown', this._handleEscClose);
   }
