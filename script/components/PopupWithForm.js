@@ -1,8 +1,10 @@
 import Popup from "./Popup";
 
 class PopupWithForm extends Popup {
-  constructor() {
-    super();
+  constructor(selector, submitForm) {
+    // принимает в конструктор колбэк сабмита формы
+    super(selector);
+    this._submitForm = submitForm;
   }
 
   // собирает данные всех полей формы.

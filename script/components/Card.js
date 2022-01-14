@@ -1,11 +1,9 @@
-import { popupImg, imgPopupPlace, titlePopupPlace } from '../utils/constants.js';
-
 class Card {
-  constructor(selector, title, image, onPopup) {
+  constructor(selector, title, image, handleCardClick) {
     this._selector = selector;
     this._title = title;
     this._image = image;
-    this._onPopup = onPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -25,16 +23,14 @@ class Card {
   _handleDelete = () => this._element.remove()
 
   _openPopup = () => {
-
     // const popupImg = document.querySelector('.popup_element_image');
     // const imgPopupPlace = document.querySelector('.figure__image');
     // const titlePopupPlace = document.querySelector('.figure__title');
-
-    titlePopupPlace.textContent = this._title;
-    imgPopupPlace.src = this._image;
-    imgPopupPlace.alt = this._title;
-
-    this._onPopup(popupImg);
+    //
+    // titlePopupPlace.textContent = this._title;
+    // imgPopupPlace.src = this._image;
+    // imgPopupPlace.alt = this._title;
+    this._handleCardClick(popupImg);
   }
 
   _setEventListeners() {
@@ -47,7 +43,6 @@ class Card {
     const imgOpenPopup = this._element.querySelector('.place__image');
     imgOpenPopup.addEventListener('click', this._openPopup);
   }
-
 
   generateCard() {
     this._element = this._getTemplate();
