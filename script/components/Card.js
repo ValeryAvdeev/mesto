@@ -47,8 +47,9 @@ class Card {
     const buttonDeletePlace = this._element.querySelector('.button_item_delete');
     buttonDeletePlace.addEventListener('click', this._handleDelete);
 
-    const imgOpenPopup = this._element.querySelector('.place__image');
-    imgOpenPopup.addEventListener('click', this._handleCardClick);
+    const imageCard = this._element.querySelector('.place__image');
+    imageCard.addEventListener('click', this._handleCardClick);
+
   }
 
   generateCard() {

@@ -88,8 +88,13 @@ function handleAddPlace(evt) {
   const placeItem = new Card({
     title: titleInput.value,
     image: imgForm.value,
-    handleCardClick: () => popupWithImg.open(titleInput.value, imgForm.value)
+    handleCardClick: () => popupWithImg.open(placeItem[titleInput.value], imgForm.textContent)
   },'.place-template');
+
+  console.log(`handleAddPlace ${titleInput.value}`)
+  console.log(`handleAddPlace ${imgForm.value}`)
+  // console.log(titleInput.value)
+  // console.log(imgForm.value)
 
   const placeEl = placeItem.generateCard();
 
@@ -99,7 +104,6 @@ function handleAddPlace(evt) {
 
   cardFormValidator.disabledButton();
   popupPlaceClass.close();
-  // closePopup(popupPlace);
 }
 // form
 formElementPlace.addEventListener('submit', handleAddPlace);
