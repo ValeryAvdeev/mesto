@@ -1,4 +1,4 @@
-import Popup from "./Popup";
+import Popup from "./Popup.js";
 
 class PopupWithForm extends Popup {
   constructor(selector, submitForm) {
@@ -15,6 +15,8 @@ class PopupWithForm extends Popup {
   setEventListeners() {
     // класса PopupWithForm должен не только добавлять обработчик клика иконке закрытия,
     // но и добавлять обработчик сабмита формы.
+
+    super.setEventListeners();
   }
 
   // Перезаписывает родительский метод close
