@@ -16,8 +16,8 @@ export const imgForm = document.querySelector('.form__input_popup_image');
 export const popupImg = document.querySelector('.popup_element_image');
 export const popupCloseBtnImg = popupImg.querySelector('.popup__close_place_img');
 export const popupOverlayImg = popupImg.querySelector('.popup__overlay_select_image');
-export const imgPopupPlace = document.querySelector('.figure__image');
-export const titlePopupPlace = document.querySelector('.figure__title');
+// export const imgPopupPlace = document.querySelector('.figure__image');
+// export const titlePopupPlace = document.querySelector('.figure__title');
 export const validationConfig = {
   inputSelector: '.form__input',
   submitButtonSelector: '.form__submit',
