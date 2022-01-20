@@ -4,13 +4,14 @@ import {
   placesList,
   validationConfig,
   formElementProfile,
+  btnPopupAdd,
+  btnPopupEdit,
   formElementPlace,
   initialCards
 } from '../script/utils/constants.js'
 import Section from "../script/components/Section.js";
-// import Popup from "../script/components/Popup.js";
-// import PopupWithImage from "../script/components/PopupWithImage.js";
-// import PopupWithForm from "../script/components/PopupWithForm.js";
+import PopupWithImage from "../script/components/PopupWithImage.js";
+import PopupWithForm from "../script/components/PopupWithForm.js";
 
 const section = new Section({
   items: initialCards,
@@ -19,28 +20,44 @@ const section = new Section({
 
 section.renderSection();
 
+const popupWithImg = new PopupWithImage('.popup_element_image');
+
+const editFormValidator = new FormValidator(validationConfig, formElementProfile);
+const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
+
 function renderCard(object) {
+
   const card = new Card({
     name: object.name,
     link: object.link,
-    handleCardClick: () =>{
-      //func open popup
-    }
+    handleCardClick: () => popupWithImg.open(object)//func open popup
   }, '.place-template');
 
   return card.generateCard();
 }
+const profileSubmitHandler = () => {};
+
+const placeSubmitHandler = ({ title, image }) => {
+  console.log(title)
+  const cardAdd = renderCard({ name: title, link: image });
+  section.addItem(cardAdd);
+};
+const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);
 
 // // Popup
-// const popupPlaceClass = new Popup('.popup_element_place');
-// const popupEditClass = new Popup('.popup_element_profile');
-//
+btnPopupAdd.addEventListener('click', () => popupPlaceClass.open());
+
+popupPlaceClass.close();
+const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
+btnPopupEdit.addEventListener("click", () => popupEditClass.open());
+// //валидация форм
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+
 // // открытие попап картинки
 // const popupWithImg = new PopupWithImage('.popup_element_image');
 //
-// //валидация форм
-const editFormValidator = new FormValidator(validationConfig, formElementProfile);
-const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
+
 
 //отрисовка элементов на странице
 // const cardElement = new Section({
@@ -73,8 +90,7 @@ const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 // // btnPopupEdit.addEventListener("click", () => popupEditClass.open());
 //
 //
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
+
 //
 // // cardElement.renderer();
 //

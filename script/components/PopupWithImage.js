@@ -1,27 +1,25 @@
 import Popup from "./Popup.js";
 
 class PopupWithImage extends Popup {
-  // constructor(selector, image, title) {
-  //   super(selector);
-  //   this._image = image;
-  //   this._title = title;
-  // }
+  constructor(selector) {
+    super(selector);
+    this._image = this._popup.querySelector('.figure__image');
+    this._title = this._popup.querySelector('.figure__title');
+  }
   // перезаписывать родительский метод open
-  open(title, image) {
-    console.log(`class PopupWithImage`)
-    console.log(title)
-    console.log(image)
-    // вставлять в попап картинку с src изображения и подписью к картинке.
-    const imgPopupPlace = document.querySelector('.figure__image');
-    const titlePopupPlace = document.querySelector('.figure__title');
-    // titlePopupPlace.textContent = this._title;
-    titlePopupPlace.textContent = title;
-    // imgPopupPlace.src = this._image;
-    imgPopupPlace.src = image;
-    // imgPopupPlace.alt = this._title;
-    imgPopupPlace.alt = title;
+  open(obj) {
+    this._image.src = obj.link ;
+    this._title.alt = obj.name;
+    this._title.textContent = obj.name;
     super.open();
   }
 }
 
 export default PopupWithImage;
+
+// вставлять в попап картинку с src изображения и подписью к картинке.
+// const imgPopupPlace = document.querySelector('.figure__image');
+// const titlePopupPlace = document.querySelector('.figure__title');
+// titlePopupPlace.textContent = title;
+// imgPopupPlace.src = image;
+// imgPopupPlace.alt = title;
