@@ -11,21 +11,21 @@ class PopupWithForm extends Popup {
   // собирает данные всех полей формы.
   _getInputValues() {
     // достаём все элементы полей
-    this._elementForm.querySelectorAll('.form__input');
+    this._inputs = this._elementForm.querySelectorAll('.form__input');
     // создаём пустой объект
     this._formValues = {};
     // добавляем в этот объект значения всех полей
-    this._elementForm.forEach(input => {
+    this._inputs.forEach(input => {
       this._formValues[input.name] = input.value;
     });
     // возвращаем объект значений
-    console.log(this._formValues)
     return this._formValues;
   }
 
-  _handleSubmit(evt) {
+  _handleSubmit = (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues());
+    this._elementForm.reset();
     this.close();
   }
 
@@ -38,13 +38,10 @@ class PopupWithForm extends Popup {
   _setEventListeners() {
     this._elementForm.addEventListener('submit', this._handleSubmit);
     super._setEventListeners();
-    // console.log(`_setEventListeners ${this._elementForm}`)
-    console.log(this._elementForm)
   }
 
   // Перезаписывает родительский метод close
   close() {
-    this._elementForm.reset();
     this._removeListener();
     super.close();
   }

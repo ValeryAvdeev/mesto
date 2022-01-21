@@ -16,10 +16,3 @@ class PopupWithImage extends Popup {
 }
 
 export default PopupWithImage;
-
-// вставлять в попап картинку с src изображения и подписью к картинке.
-// const imgPopupPlace = document.querySelector('.figure__image');
-// const titlePopupPlace = document.querySelector('.figure__title');
-// titlePopupPlace.textContent = title;
-// imgPopupPlace.src = image;
-// imgPopupPlace.alt = title;

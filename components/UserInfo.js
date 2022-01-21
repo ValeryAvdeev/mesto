@@ -1,18 +1,22 @@
 class UserInfo {
   // Принимает в конструктор объект с селекторами двух элементов:
   // элемента имени пользователя и элемента информации о себе.
-  constructor({ selectorName, selectorInfo }) {
-    this._selectorName = document.querySelector(selectorName);
-    this._selectorInfo = document.querySelector(selectorInfo);
+  constructor({ nameSelector, infoSelector }) {
+    this._nameSelector = nameSelector;
+    this._infoSelector = infoSelector;
   }
 
   // Возвращает объект с данными пользователя
-  getUserInfo() {
-    // будет подставить в форму при открытии
+  getUserInfo({nameInput, infoInput}) {
+    nameInput.value = this._nameSelector.textContent;
+    infoInput.value = this._infoSelector.textContent;
   }
 
   // принимает новые данные пользователя и добавляет их на страницу
-  setUserInfo() {}
+  setUserInfo({name, info}) {
+    this._nameSelector.textContent = name;
+    this._infoSelector.textContent = info;
+  }
 }
 
 export default UserInfo;
