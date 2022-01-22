@@ -23,4 +23,4 @@
 с обращением к _DOM_, _popup_.
 
 
-проект выложин на github [Места](https://valeryavdeev.github.io/mesto/src/index.html).
+проект выложин на github [Места](https://valeryavdeev.github.io/mesto/index.html).
