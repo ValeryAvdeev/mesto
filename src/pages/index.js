@@ -2,15 +2,12 @@ import './index.css'
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import {
-  placesList,
   validationConfig,
   formElementProfile,
   btnPopupAdd,
   btnPopupEdit,
   formElementPlace,
   initialCards,
-  nameProfile,
-  jobProfile,
   nameInput,
   infoInput
 } from '../script/utils/constants.js'
@@ -22,7 +19,7 @@ import UserInfo from "../components/UserInfo.js";
 const section = new Section({
   items: initialCards,
   renderer: renderCard
-}, placesList);
+}, '.places');
 
 const editFormValidator = new FormValidator(validationConfig, formElementProfile);
 const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
@@ -48,16 +45,19 @@ const placeSubmitHandler = ({ title, image }) => {
 
 const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);
 
-const userInfo = new UserInfo( {nameSelector: nameProfile, infoSelector: jobProfile } )
+// const userInfo = new UserInfo( {nameSelector: nameProfile, infoSelector: jobProfile } )
+const userInfo = new UserInfo( {nameSelector: ".profile__title_popup_name", infoSelector: ".profile__subtitle_popup_job" } )
 
 const profileSubmitHandler = ({name, info}) => {
-
   userInfo.setUserInfo({name, info})
 };
 const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
 
 btnPopupEdit.addEventListener("click", () => {
-  userInfo.getUserInfo({nameInput, infoInput });
+
+  const user = userInfo.getUserInfo();
+  nameInput.value = user.name;
+  infoInput.value = user.info;
   popupEditClass.open();
 });
 
