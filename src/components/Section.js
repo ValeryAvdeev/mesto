@@ -1,8 +1,7 @@
 class Section  {
-  constructor({ items, renderer}, selector) {
+  constructor({ items, renderer }, selector) {
     this._items = items;
     this._renderer = renderer;
-    // this._selector = selector;
     this._selector = document.querySelector(selector);
   }
 
@@ -10,6 +9,7 @@ class Section  {
     this._items.forEach((item) => {
       const element = this._renderer(item);
       this.addItem(element);
+      // this._renderer(item)
     });
   }
 

@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<!--  <link rel="stylesheet" href="pages/index.css"/>-->
+  <!--  <link rel="stylesheet" href="pages/index.css"/>-->
   <title>Место</title>
 </head>
 <body>
@@ -18,18 +18,35 @@
   </header>
   <main class="content">
     <section class="profile">
-      <img
-        src="<%=require('./images/profile-images.jpg')%>"
-        alt="фотография профиля."
-        class="profile__avatar"
-      />
-      <div class="profile__info">
-        <h1 class="profile__title profile__title_popup_name">Жак-Ив Кусто</h1>
-        <button type="button" aria-label="Кнопка редактирования профиля"
-                class="button button_item_edit"></button>
-        <p class="profile__subtitle profile__subtitle_popup_job">Исследователь океана</p>
+      <div class="avatar">
+        <img
+          src="<%=require('./images/profile-images.jpg')%>"
+          alt="фотография профиля."
+          class="avatar__imege"
+        />
+        <div class="avatar__over">
+          <img
+            src="<%=require('./images/avatar__edit.png')%>"
+            alt="зудактировать аватар"
+            class="avatar__edit">
+        </div>
       </div>
-      <button type="button" aria-label="Кнопка добавления контента" class="button button_item_add"></button>
+      <div class="profile__info">
+        <h1 class="profile__title profile__title_popup_name">Жак-Ив Кусто
+        </h1>
+        <button
+          type="button"
+          aria-label="Кнопка редактирования профиля"
+          class="button button_item_edit"
+        ></button>
+        <p class="profile__subtitle profile__subtitle_popup_job">Исследователь океана
+        </p>
+      </div>
+      <button
+        type="button"
+        aria-label="Кнопка добавления контента"
+        class="button button_item_add"
+      ></button>
     </section>
     <section class="places">
       <!-- Контейнер для добавления карточек -->
@@ -43,12 +60,15 @@
 <div class="popup popup_element_profile">
   <div class="popup__overlay popup__overlay_select_profile"></div>
   <div class="popup__content">
-    <button type="button"
-            aria-label="Кнопка закрытия редактора формы"
-            class="popup__close popup__close_element_edit">
-    </button>
+    <button
+      type="button"
+      aria-label="Кнопка закрытия редактора формы"
+      class="popup__close popup__close_element_edit"
+    ></button>
     <form name="popup" class="form form_element_profile form_profile">
-      <h3 class="form__title form__title_element_edit">Редактировать профиль</h3>
+      <h3 class="form__title form__title_element_edit">
+        Редактировать профиль
+      </h3>
       <input
         type="text"
         name="name"
@@ -71,9 +91,7 @@
         required
       />
       <span class="error" id="user-job-error"></span>
-      <button
-        type="submit"
-        class="form__submit form__submit_btn_edit">
+      <button type="submit" class="form__submit form__submit_btn_edit">
         Сохранить
       </button>
     </form>
@@ -83,10 +101,11 @@
 <div class="popup popup_element_place">
   <div class="popup__overlay popup__overlay_select_place"></div>
   <div class="popup__content">
-    <button type="button"
-            aria-label="Кнопка закрытия редактора формы"
-            class="popup__close popup__close_element_place">
-    </button>
+    <button
+      type="button"
+      aria-label="Кнопка закрытия редактора формы"
+      class="popup__close popup__close_element_place"
+    ></button>
     <form name="popup" class="form form_element_place form_place">
       <h3 class="form__title">Новое место</h3>
       <input
@@ -126,8 +145,8 @@
     <button
       type="button"
       aria-label="Кнопка закрытия редактора формы"
-      class="popup__close popup__close_place_img">
-    </button>
+      class="popup__close popup__close_place_img"
+    ></button>
     <figure class="figure">
       <img src="#" alt="картинка." class="figure__image"/>
       <figcaption class="figure__title"></figcaption>
@@ -135,20 +154,45 @@
   </div>
 </div>
 
+<div class="popup popup_type_avatar">
+  <div class="popup__overlay popup__overlay_select_avatar"></div>
+  <div class="popup__content">
+    <button
+      type="button"
+      aria-label="Кнопка закрытия редактора фотографии профеля"
+      class="popup__close popup__close_element_avatar"
+    ></button>
+    <form name="popup" class="form form_element_avatar">
+      <h3 class="form__title">Обновить аватар</h3>
+      <input
+        type="url"
+        name="avatar"
+        placeholder="Ссылка на фотографию профеля"
+        class="form__input form__input_popup_image"
+        id="avatar-image"
+        required
+      />
+      <span class="error" id="avatar-image-error"></span>
+      <button
+        type="submit"
+        class="form__submit form__submit_btn_add form__submit_disabled"
+        disabled
+      >
+        Сохранить
+      </button>
+    </form>
+  </div>
+</div>
+
 <template class="place-template">
   <div class="place">
     <button class="button button_item_delete" type="button"></button>
-    <img
-      src="#"
-      alt="картинка."
-      class="place__image"
-    />
+    <img src="#" alt="картинка." class="place__image"/>
     <div class="place__content">
       <h2 class="place__title"></h2>
       <button type="button" class="button button_item_like"></button>
     </div>
   </div>
 </template>
-<!--<script type="module" src="pages/index.js"></script>-->
 </body>
 </html>

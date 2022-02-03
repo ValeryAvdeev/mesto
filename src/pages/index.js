@@ -7,14 +7,22 @@ import {
   btnPopupAdd,
   btnPopupEdit,
   formElementPlace,
-  initialCards,
   nameInput,
-  infoInput
+  infoInput,
+  // token,
+  initialCards
 } from '../script/utils/constants.js'
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+
+const api = new Api(
+  {
+    address: 'https://mesto.nomoreparties.co/v1/cohort-35',
+    token: 'f1517d9d-d32e-439e-a468-1c652ea303d1'
+  })
 
 const section = new Section({
   items: initialCards,
@@ -27,7 +35,6 @@ const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 const popupWithImg = new PopupWithImage('.popup_element_image');
 
 function renderCard(objectCard) {
-
   const card = new Card({
     name: objectCard.name,
     link: objectCard.link,
@@ -46,7 +53,10 @@ const placeSubmitHandler = ({ title, image }) => {
 const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);
 
 // const userInfo = new UserInfo( {nameSelector: nameProfile, infoSelector: jobProfile } )
-const userInfo = new UserInfo( {nameSelector: ".profile__title_popup_name", infoSelector: ".profile__subtitle_popup_job" } )
+const userInfo = new UserInfo( {
+  nameSelector: ".profile__title_popup_name",
+  infoSelector: ".profile__subtitle_popup_job" }
+)
 
 const profileSubmitHandler = ({name, info}) => {
   userInfo.setUserInfo({name, info})
@@ -54,8 +64,8 @@ const profileSubmitHandler = ({name, info}) => {
 const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
 
 btnPopupEdit.addEventListener("click", () => {
-
   const user = userInfo.getUserInfo();
+
   nameInput.value = user.name;
   infoInput.value = user.info;
   popupEditClass.open();
@@ -67,3 +77,20 @@ editFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 
 section.renderSection();
+
+// api.getCard()
+//   .then( cards => {
+//     // console.log(section.renderSection)
+//     section.renderSection(cards);
+//   })
+//   .catch(err => console.log(`Ошибка в index.js ${err}`));
+
+// const avatarSubmitHandler = () => {}
+
+const avatar = document.querySelector('.popup_type_avatar')
+const buttonAvatar = document.querySelector('.avatar__over')
+// const popupAvatarClass =  new PopupWithForm('.popup_element_image', avatarSubmitHandler)
+buttonAvatar.addEventListener('click', () => {
+
+  avatar.classList.add('popup_open')
+})

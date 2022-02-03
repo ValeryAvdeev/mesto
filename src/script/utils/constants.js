@@ -11,6 +11,7 @@ export const validationConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error_visible'
 };
+// удалить после реализации Api
 export const initialCards = [
   {
     name: 'Архыз',
@@ -37,3 +38,6 @@ export const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+// export const token = 'f1517d9d-d32e-439e-a468-1c652ea303d1';
+// export const idGroup ='cohort-35';
