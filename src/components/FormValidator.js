@@ -39,11 +39,7 @@ class FormValidator {
 
   _toggleButtonError = () => {
     if (this._hasInvalidInput(this._inputList)) {
-      // const buttonCreatePlace = document.querySelector('.form__submit_btn_add');
-      // buttonCreatePlace.classList.add('form__submit_disabled');
-      // this._submitButtonSelector.classList.add('form__submit_disabled');
-
-      this.disabledButton();
+       this.disabledButton();
     } else {
       this._submitButton.classList.remove(this._inactiveButtonClass);
       this._submitButton.disabled = false;

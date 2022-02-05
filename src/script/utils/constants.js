@@ -11,33 +11,6 @@ export const validationConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error_visible'
 };
-// удалить после реализации Api
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg',
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-// export const token = 'f1517d9d-d32e-439e-a468-1c652ea303d1';
-// export const idGroup ='cohort-35';
+// export const avatar = document.querySelector('.popup_type_avatar');
+export const buttonAvatar = document.querySelector('.avatar__over');
+export const formElementAvatar = document.querySelector('.form_element_avatar');
