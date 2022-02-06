@@ -22,7 +22,7 @@
         <img
           src="<%=require('./images/profile-images.jpg')%>"
           alt="фотография профиля."
-          class="avatar__imege"
+          class="avatar__image"
         />
         <div class="avatar__over">
           <img
@@ -183,7 +183,7 @@
   </div>
 </div>
 <!--popup удаление карточки-->
-<div class="popup popup_type_delete-card">
+<div class="popup popup_element_delete-card">
   <div class="popup__overlay popup__overlay_select_delete-card"></div>
   <div class="popup__content">
     <button
@@ -191,11 +191,11 @@
       aria-label="Кнопка закрытия редактора фотографии профеля"
       class="popup__close popup__close_element_delete-card"
     ></button>
+    <form>
       <h3 class="form__title">Вы уверены?</h3>
       <button
         type="submit"
-        class="form__submit form__submit_btn_add form__submit_disabled"
-        disabled
+        class="form__submit form__submit_btn_add form__submit_delete-card"
       >
         Да
       </button>
@@ -205,11 +205,14 @@
 
 <template class="place-template">
   <div class="place">
-    <button class="button button_item_delete" type="button"></button>
+    <button class="button button_item_delete button_delete" type="button"></button>
     <img src="#" alt="картинка." class="place__image"/>
     <div class="place__content">
       <h2 class="place__title"></h2>
-      <button type="button" class="button button_item_like"></button>
+      <div class="place__like">
+        <button type="button" class="button button_item_like"></button>
+        <span class="place__like-amount"></span>
+      </div>
     </div>
   </div>
 </template>

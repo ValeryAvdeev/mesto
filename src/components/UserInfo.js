@@ -19,7 +19,6 @@ class UserInfo {
     return this.inputValue;
   }
 
-
   // принимает новые данные пользователя и добавляет их на страницу
   setUserInfo({name, info}) {
     this._nameSelector.textContent = name;
@@ -31,7 +30,6 @@ class UserInfo {
   }
 
   setUserAvatar(avatar) {
-    console.log(avatar)
     this._avatarSelector.src = avatar;
   }
 

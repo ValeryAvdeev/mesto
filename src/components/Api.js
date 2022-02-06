@@ -11,8 +11,8 @@ class Api {
     return Promise.reject(`Ошибка ${response.status}`);
   }
 
-  getCards() {
-    return fetch(`${this._address}/cards`, {
+  getUser() {
+    return fetch(`${this._address}/users/me`, {
       headers: {
         authorization: this._token
       }
@@ -20,8 +20,8 @@ class Api {
       .then(this._handleResponse)
   }
 
-  getUser() {
-    return fetch(`${this._address}/users/me`, {
+  getCards() {
+    return fetch(`${this._address}/cards`, {
       headers: {
         authorization: this._token
       }
@@ -59,17 +59,8 @@ class Api {
       .then(this._handleResponse)
   }
 
-  amountLikes() {
-    return fetch(`${this._address}/cards`, {
-      headers: {
-        authorization: this._token
-      }
-    })
-      .then(this._handleResponse)
-  }
-
-  deleteCard(id) {
-    return fetch(`${this._address}/cards/${id}`, {
+  deleteCard(_id) {
+    return fetch(`${this._address}/cards/${_id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._token
@@ -90,15 +81,14 @@ class Api {
   }
 
   editAvatar(avatar) {
+    // console.log(avatar)
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        avatar //пока непонятно что нужно тут
-      })
+      body: JSON.stringify(avatar)
     })
       .then(this._handleResponse)
   }

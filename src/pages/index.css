@@ -81,6 +81,8 @@ Place
 @import url(../blocks/place/__content/place__content.css);
 @import url(../blocks/place/__title/place__title.css);
 @import url(../blocks/place/__image/place__image.css);
+@import url(../blocks/place/__like/place__like.css);
+@import url(../blocks/place/__like-amount/place__like-amount.css);
 
 /* 
 ===========
@@ -139,6 +141,7 @@ Button
 @import url(../blocks/button/_item/button_item_like.css);
 @import url(../blocks/button/_item/button_item_edit.css);
 @import url(../blocks/button/_item/button_item_delete.css);
+@import url(../blocks/button/_item/button_item_delete-none.css);
 @import url(../blocks/button/_item/button_item_like-active.css);
 
 /* 

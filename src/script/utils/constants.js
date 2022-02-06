@@ -11,6 +11,5 @@ export const validationConfig = {
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__error_visible'
 };
-// export const avatar = document.querySelector('.popup_type_avatar');
 export const buttonAvatar = document.querySelector('.avatar__over');
 export const formElementAvatar = document.querySelector('.form_element_avatar');
