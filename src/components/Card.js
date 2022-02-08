@@ -33,7 +33,6 @@ class Card {
     // );
   }
 
-
   _checkingForeignerCards () {
     if(this._ownerId !== this._userId){
       this._delete.classList.add('button_item_delete-none');

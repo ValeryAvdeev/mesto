@@ -18,6 +18,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import PopupConfig from "../components/PopupConfig.js";
+import {logPlugin} from "@babel/preset-env/lib/debug";
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__title_popup_name",
@@ -97,15 +98,14 @@ const popupAvatar = new PopupWithForm('.popup_element_avatar', avatarSubmitHandl
 
 const deleteCardHandler = (card) => {
   api.deleteCard(card._id)
-    .then(() => {
-      console.log(card);
-      card.remove();
+    .then((cardPost) => {
+      console.log(cardPost);
       popupDeleteCard.close();
     })
     .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
 };
 const popupDeleteCard = new PopupConfig('.popup_element_delete-card', {
-  formSubmit: deleteCardHandler
+  clickHandleCallBack: deleteCardHandler
 });
 
 //функция для рендара карточек
@@ -127,8 +127,9 @@ function renderCard(objectCard) {
 //функция для добавления карточки
 const placeSubmitHandler = (obj) => {
   //добавления на сервер карточки
+
   api.addCard({name: obj.title, link: obj.image})
-    .then(() => {
+    .then((obj) => {
       const cardAdd = renderCard(obj);
       section.addItem(cardAdd);
       cardFormValidator.disabledButton();

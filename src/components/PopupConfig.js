@@ -1,26 +1,32 @@
 import Popup from "./Popup.js";
 
 class PopupConfig extends Popup {
-  constructor(selector, {formSubmit}) {
+  constructor(selector, { clickHandleCallBack }) {
     super(selector); //наследование
-    this._formSubmit = formSubmit; //колбек функция
-    this._form = this._popup.querySelector('.form'); //поиск формы в попап
-    this._submit = this._submit.bind(this); //присвание сабмиту this
+    this._clickHandleCallBack = clickHandleCallBack; //колбек функция
+    this._buttonDelete = this._popup.querySelector('.form__delete-card');
   }
 
-  //риватный метод поведения собмита
-   _submit(evt) {
-    evt.preventDefault();
-    //при сабмите надо удалять карточку по в колбек передаем параметр id карточки
-     this._formSubmit(this.id);
+  _handleClick() {
+    this._clickHandleCallBack(this.card);
   }
 
-  //метод открытия
-  open(id) {
-    //на форму вешаем слушатель
-    this.id = id
-    this._form.addEventListener('submit', this._submit)
-    //наследуем открытие
+  _setEventListeners(){
+    this._buttonDelete.addEventListener('click', () => this._handleClick());
+    super._setEventListeners();
+  }
+  _removeListener() {
+    this._buttonDelete.removeEventListener('click', () => this._handleClick());
+    super._removeListener();
+  }
+
+  close() {
+    this._removeListener();
+    super.close();
+  }
+
+  open(card) {
+    this.card = card
     super.open();
   }
 }
