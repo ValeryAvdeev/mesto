@@ -17,7 +17,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-
+import PopupConfig from "../components/PopupConfig.js";
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__title_popup_name",
@@ -47,15 +47,14 @@ api.getUser()
     .then( (cards) => {
       section = new Section({
         items: cards,
-        renderer: renderCard,
-        // userId: userInfo._id
+        // userId: userInfo._id,
+        renderer: renderCard
       }, '.places');
       section.renderSection();
-
     })
     .catch(err => console.log(`Ошибка в index.js при создании карточек ${err}`))
   )
-  .catch(err => console.log(`Ошибка в index.js при запросе информации${err}`));
+  .catch(err => console.log(`Ошибка в index.js при запросе информации о пользователе ${err}`));
 
 //получение карточек
 
@@ -77,6 +76,7 @@ const profileSubmitHandler = ({name, info}) => {
     })
     .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`));
 };
+//экземпляр класса для редактирования профиля
 const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
 
 //аватар
@@ -89,16 +89,47 @@ const avatarSubmitHandler = (avatar) => {
     })
     .catch(err => console.log(`Ошибка в index.js при редактировании avatar ${err}`))
 };
-
 //экземпляр класса для редактирования аватара
 const popupAvatar = new PopupWithForm('.popup_element_avatar', avatarSubmitHandler);
 
-//функция для добавления карточки
-const placeSubmitHandler = ({ title, image }) => {
-  //добавления на сервер карточки
-  api.addCard({name: title, link: image})
+
+
+
+const deleteCardHandler = (card) => {
+  api.deleteCard(card._id)
     .then(() => {
-      const cardAdd = renderCard({name: title, link: image});
+      console.log(card);
+      card.remove();
+      popupDeleteCard.close();
+    })
+    .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
+};
+const popupDeleteCard = new PopupConfig('.popup_element_delete-card', {
+  formSubmit: deleteCardHandler
+});
+
+//функция для рендара карточек
+function renderCard(objectCard) {
+  const card = new Card({
+    card: objectCard,
+    userId: userInfo._id,
+    handleCardClick: () => {
+      popupWithImg.open(objectCard);
+    },
+    handleDeleteCard: () => {
+      popupDeleteCard.open(objectCard);
+    }
+  }, '.place-template');
+
+  return card.generateCard();
+};
+
+//функция для добавления карточки
+const placeSubmitHandler = (obj) => {
+  //добавления на сервер карточки
+  api.addCard({name: obj.title, link: obj.image})
+    .then(() => {
+      const cardAdd = renderCard(obj);
       section.addItem(cardAdd);
       cardFormValidator.disabledButton();
     })
@@ -107,19 +138,6 @@ const placeSubmitHandler = ({ title, image }) => {
 //экземпляр класса для добавления карточки
 const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);
 
-//функция для рендара карточек
-function renderCard(objectCard) {
-
-  const card = new Card({
-    card: objectCard,
-    handleCardClick: () => {
-      console.log(objectCard._id)
-      popupWithImg.open(objectCard);
-    }//func open popup картинки
-  }, '.place-template');
-  return card.generateCard();
-
-  };
 
 //слушатели на клик для открытия попап
 btnPopupEdit.addEventListener("click", () => {

@@ -27,7 +27,7 @@
         <div class="avatar__over">
           <img
             src="<%=require('./images/avatar__edit.png')%>"
-            alt="зудактировать аватар"
+            alt="редактирование аватар"
             class="avatar__edit">
         </div>
       </div>
@@ -186,20 +186,21 @@
 <div class="popup popup_element_delete-card">
   <div class="popup__overlay popup__overlay_select_delete-card"></div>
   <div class="popup__content">
+    <form class="form form_element_delete-card">
+      <h3 class="form__title">Вы уверены?</h3>
+      <button
+        type="submit"
+        class="form__submit  form__submit_delete-card"
+      >
+        Да
+      </button>
+    </form>
+    <!-- form__submit_btn_add-->
     <button
       type="button"
       aria-label="Кнопка закрытия редактора фотографии профеля"
       class="popup__close popup__close_element_delete-card"
     ></button>
-    <form>
-      <h3 class="form__title">Вы уверены?</h3>
-      <button
-        type="submit"
-        class="form__submit form__submit_btn_add form__submit_delete-card"
-      >
-        Да
-      </button>
-    </form>
   </div>
 </div>
 
