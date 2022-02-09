@@ -97,20 +97,23 @@ const popupAvatar = new PopupWithForm('.popup_element_avatar', avatarSubmitHandl
 
 
 const deleteCardHandler = (card) => {
+  console.log(card)
   api.deleteCard(card._id)
-    .then((cardPost) => {
-      console.log(cardPost);
+    .then((card) => {
+      // console.log(cardPost);
+      card.deleteCard();
       popupDeleteCard.close();
     })
     .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
 };
+
 const popupDeleteCard = new PopupConfig('.popup_element_delete-card', {
   clickHandleCallBack: deleteCardHandler
 });
 
 //функция для рендара карточек
 function renderCard(objectCard) {
-  const card = new Card({
+  const cardElement = new Card({
     card: objectCard,
     userId: userInfo._id,
     handleCardClick: () => {
@@ -118,10 +121,16 @@ function renderCard(objectCard) {
     },
     handleDeleteCard: () => {
       popupDeleteCard.open(objectCard);
+    },
+    addLikeCard: (objectCard) => {
+      return api.addLike(objectCard)
+    },
+    deleteLikeCard: (objectCard) => {
+      return api.deleteLike(objectCard)
     }
   }, '.place-template');
 
-  return card.generateCard();
+  return cardElement.generateCard();
 };
 
 //функция для добавления карточки

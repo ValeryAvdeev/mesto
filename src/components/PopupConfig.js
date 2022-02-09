@@ -7,16 +7,16 @@ class PopupConfig extends Popup {
     this._buttonDelete = this._popup.querySelector('.form__delete-card');
   }
 
-  _handleClick() {
+  _handleClick = () => {
     this._clickHandleCallBack(this.card);
   }
 
   _setEventListeners(){
-    this._buttonDelete.addEventListener('click', () => this._handleClick());
+    this._buttonDelete.addEventListener('click', this._handleClick);
     super._setEventListeners();
   }
   _removeListener() {
-    this._buttonDelete.removeEventListener('click', () => this._handleClick());
+    this._buttonDelete.removeEventListener('click', this._handleClick);
     super._removeListener();
   }
 
@@ -26,7 +26,7 @@ class PopupConfig extends Popup {
   }
 
   open(card) {
-    this.card = card
+    this.card = card;
     super.open();
   }
 }
