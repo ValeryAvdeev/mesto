@@ -6,7 +6,7 @@ class PopupConfig extends Popup {
   }) {
     super(selector); //наследование
     this._clickHandleCallBack = clickHandleCallBack; //колбек функция
-    this._buttonDelete = this._popup.querySelector('.form__delete-card');
+    this._buttonDelete = this._popup.querySelector('.popup__delete-card');
   }
 
   setSubmitAction(action) {
