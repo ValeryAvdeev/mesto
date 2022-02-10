@@ -18,7 +18,10 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import PopupConfig from "../components/PopupConfig.js";
-import {logPlugin} from "@babel/preset-env/lib/debug";
+import {
+  addSave,
+  removeSave
+} from "../script/utils/utils.js";
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__title_popup_name",
@@ -48,7 +51,6 @@ api.getUser()
     .then( (cards) => {
       section = new Section({
         items: cards,
-        // userId: userInfo._id,
         renderer: renderCard
       }, '.places');
       section.renderSection();
@@ -69,46 +71,44 @@ const avatarFormValidator = new FormValidator(validationConfig, formElementAvata
 const popupWithImg = new PopupWithImage('.popup_element_image');
 
 //функция при открытии попап с редактированием профиля
-const profileSubmitHandler = ({name, info}) => {
+const profileSubmitHandler = ({name, info}, text) => {
   //закрузка с сервера данных профиля
+  addSave(text)
   api.editProfile({name, info})
     .then(user => {
       userInfo.setUserInfo({name: user.name, info: user.about})
     })
-    .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`));
+    .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
+    .finally(() => removeSave(text))
 };
 //экземпляр класса для редактирования профиля
 const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
 
 //аватар
-const avatarSubmitHandler = (avatar) => {
+const avatarSubmitHandler = (avatar, text) => {
   //для редактирования аватара
+  addSave(text)
   api.editAvatar(avatar)
-    .then( avatar => {
+    .then(avatar => {
       userInfo.setUserAvatar(avatar.avatar);
       avatarFormValidator.disabledButton();
     })
     .catch(err => console.log(`Ошибка в index.js при редактировании avatar ${err}`))
-};
+    .finally(() => removeSave(text));
+}
 //экземпляр класса для редактирования аватара
 const popupAvatar = new PopupWithForm('.popup_element_avatar', avatarSubmitHandler);
 
 
 
 
-const deleteCardHandler = (card) => {
-  console.log(card)
-  api.deleteCard(card._id)
-    .then((card) => {
-      // console.log(cardPost);
-      card.deleteCard();
-      popupDeleteCard.close();
-    })
-    .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
+const closePopupDeleteCard = () => {
+        popupDeleteCard.close();
 };
 
-const popupDeleteCard = new PopupConfig('.popup_element_delete-card', {
-  clickHandleCallBack: deleteCardHandler
+const popupDeleteCard = new PopupConfig('.popup_element_delete-card',
+  {
+  clickHandleCallBack: closePopupDeleteCard,
 });
 
 //функция для рендара карточек
@@ -119,8 +119,14 @@ function renderCard(objectCard) {
     handleCardClick: () => {
       popupWithImg.open(objectCard);
     },
-    handleDeleteCard: () => {
-      popupDeleteCard.open(objectCard);
+    handleDeleteCard: (card) => {
+      popupDeleteCard.open();
+      popupDeleteCard.setSubmitAction(() => {
+      api.deleteCard(card._id)
+        .then(() => card.deleteCardClass())
+        .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
+        closePopupDeleteCard();
+      })
     },
     addLikeCard: (objectCard) => {
       return api.addLike(objectCard)
@@ -134,9 +140,9 @@ function renderCard(objectCard) {
 };
 
 //функция для добавления карточки
-const placeSubmitHandler = (obj) => {
+const placeSubmitHandler = (obj, text) => {
   //добавления на сервер карточки
-
+  addSave(text);
   api.addCard({name: obj.title, link: obj.image})
     .then((obj) => {
       const cardAdd = renderCard(obj);
@@ -144,6 +150,7 @@ const placeSubmitHandler = (obj) => {
       cardFormValidator.disabledButton();
     })
     .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
+    .finally(() => removeSave(text));
 };
 //экземпляр класса для добавления карточки
 const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);

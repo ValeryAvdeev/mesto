@@ -3,13 +3,10 @@ class Section  {
     this._items = items;
     this._renderer = renderer;
     this._selector = document.querySelector(selector);
-    // this.userId = userId;
   }
 
   renderSection() {
     this._items.forEach((item) => {
-      // console.log(item.owner._id)
-      // item.userId = this.userId;
       const element = this._renderer(item);
       this.addItem(element);
     });

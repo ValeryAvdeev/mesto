@@ -1,4 +1,3 @@
-
 class Card {
   constructor({
                 card,
@@ -34,30 +33,21 @@ class Card {
   }
 
   _setIsLike() {
-    // console.log(this._card.likes)
-    // console.log(this._userId)
-    // console.log(this._card.likes.some(elem => console.log(elem._id === this._userId)));
-    if (this._card.likes.some(elem => elem._id === this._userId)) {
+   if (this._card.likes.some(elem => elem._id === this._userId)) {
       this._like.classList.add("button_item_like-active");
     }
   }
   _setEventListeners() {
-    // this._like.addEventListener('click', () => {
-    //   this._like.classList.toggle('button_item_like-active')
-    // });
-
     this._like.addEventListener('click', () => this._likeToggle());
 
     this._image.addEventListener('click', this._handleCardClick);
 
-    this._delete.addEventListener('click', this._handleDeleteCard);
-    // this._сardElement.remove()
-    // );
+    this._delete.addEventListener('click', () => this._handleDeleteCard(this));
   }
 
-  // deleteCard() {
-  //   this._сardElement.remove();
-  // }
+  deleteCardClass() {
+    this._сardElement.remove();
+  }
 
   _checkingForeignerCards () {
     if(this._ownerId !== this._userId){
