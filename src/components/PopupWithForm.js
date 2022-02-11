@@ -26,8 +26,6 @@ class PopupWithForm extends Popup {
   _handleSubmit = (evt) => {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues(), this._button);
-    this._elementForm.reset();
-    // this.close();
   }
 
   _removeListener() {
@@ -44,7 +42,6 @@ class PopupWithForm extends Popup {
   // Перезаписывает родительский метод close
   close() {
     this._elementForm.reset();
-   // this._removeListener();
     super.close();
   }
 }

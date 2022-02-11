@@ -23,13 +23,13 @@ import {
   removeSave
 } from "../script/utils/utils.js";
 
+let section = null;
+
 const userInfo = new UserInfo({
   name: ".profile__title_popup_name",
   info: ".profile__subtitle_popup_job",
   avatar: '.avatar__image'
 });
-
-let section = null;
 
 const api = new Api(
   {
@@ -45,7 +45,7 @@ api.getUser()
       info: user.about,
       avatar: user.avatar,
     });
-
+    userInfo.setUserAvatar(user.avatar);
     userInfo.setUserId(user._id);
   })
   .then(() => {
@@ -61,17 +61,10 @@ api.getUser()
   })
   .catch(err => console.log(`Ошибка в index.js при запросе информации о пользователе ${err}`));
 
-//получение карточек
-
-
 //Валидация
 const editFormValidator = new FormValidator(validationConfig, formElementProfile);
 const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 const avatarFormValidator = new FormValidator(validationConfig, formElementAvatar)
-//валидация форм
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
 
 //экземпляр класса открытия попап картинки
 const popupWithImg = new PopupWithImage('.popup_element_image');
@@ -112,12 +105,12 @@ const closePopupDeleteCard = () => popupDeleteCard.close();
 const popupDeleteCard = new PopupWithConfig('.popup_element_delete-card',
   {clickHandleCallBack: closePopupDeleteCard});
 
-// const apiDeleteCard = (card) => {
-//   api.deleteCard(card._id)
-//     .then(() => card.deleteCardClass())
-//     .then(() => closePopupDeleteCard())
-//     .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
-// }
+const apiDeleteCard = (card) => {
+  api.deleteCard(card._id)
+    .then(() => card.deleteCardClass())
+    .then(() => closePopupDeleteCard())
+    .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
+}
 
 //функция для рендара карточек
 function renderCard(objectCard) {
@@ -129,14 +122,7 @@ function renderCard(objectCard) {
     },
     handleDeleteCard: (card) => {
       popupDeleteCard.open();
-      popupDeleteCard.setSubmitAction(() => {
-        api.deleteCard(card._id)
-          .then(() => {
-            card.deleteCardClass()
-          })
-          .then(() => closePopupDeleteCard())
-          .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
-      })
+      popupDeleteCard.setSubmitAction(() => apiDeleteCard(card))
     },
     addLikeCard: (objectCard) => {
       return api.addLike(objectCard)
@@ -186,3 +172,8 @@ btnPopupAdd.addEventListener('click', () => {
   cardFormValidator.disabledButton();
   popupPlaceClass.open();
 });
+
+//валидация форм
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();

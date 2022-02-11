@@ -46,7 +46,6 @@ class Card {
   }
 
   deleteCardClass() {
-    // console.log(this._сardElement);
     this._сardElement.remove();
   }
 
