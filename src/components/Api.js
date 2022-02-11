@@ -2,6 +2,10 @@ class Api {
   constructor({address, token}) {
     this._address = address;
     this._token = token;
+    this._headers = {
+                      authorization: this._token,
+                      'Content-Type': 'application/json'
+                    };
   }
 
   _handleResponse = (response) => {
@@ -32,10 +36,7 @@ class Api {
   editProfile({name, info}) {
     return fetch(`${this._address}/users/me`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         about: info
@@ -47,10 +48,7 @@ class Api {
   addCard({name, link}) {
     return fetch(`${this._address}/cards`, {
       method: 'POST',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name,
         link
@@ -91,13 +89,9 @@ class Api {
   }
 
   editAvatar(avatar) {
-    // console.log(avatar)
     return fetch(`${this._address}/users/me/avatar`, {
       method: 'PATCH',
-      headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
-      },
+      headers: this._headers,
       body: JSON.stringify(avatar)
     })
       .then(this._handleResponse)

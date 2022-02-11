@@ -6,13 +6,13 @@ class PopupWithForm extends Popup {
     super(selector);
     this._handleFormSubmit = handleFormSubmit;
     this._elementForm = this._popup.querySelector('.form');
-    this._button = this._popup.querySelector('.form__submit')
+    this._button = this._popup.querySelector('.form__submit');
+    // достаём все элементы полей
+    this._inputs = this._elementForm.querySelectorAll('.form__input');
   }
 
   // собирает данные всех полей формы.
   _getInputValues() {
-    // достаём все элементы полей
-    this._inputs = this._elementForm.querySelectorAll('.form__input');
     // создаём пустой объект
     this._formValues = {};
     // добавляем в этот объект значения всех полей
@@ -27,7 +27,7 @@ class PopupWithForm extends Popup {
     evt.preventDefault();
     this._handleFormSubmit(this._getInputValues(), this._button);
     this._elementForm.reset();
-    this.close();
+    // this.close();
   }
 
   _removeListener() {
@@ -43,7 +43,8 @@ class PopupWithForm extends Popup {
 
   // Перезаписывает родительский метод close
   close() {
-    this._removeListener();
+    this._elementForm.reset();
+   // this._removeListener();
     super.close();
   }
 }

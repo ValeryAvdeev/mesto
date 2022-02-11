@@ -17,16 +17,16 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import PopupConfig from "../components/PopupConfig.js";
+import PopupWithConfig from "../components/PopupWithConfig.js";
 import {
   addSave,
   removeSave
 } from "../script/utils/utils.js";
 
 const userInfo = new UserInfo({
-  nameSelector: ".profile__title_popup_name",
-  infoSelector: ".profile__subtitle_popup_job",
-  avatarSelector: '.avatar__image'
+  name: ".profile__title_popup_name",
+  info: ".profile__subtitle_popup_job",
+  avatar: '.avatar__image'
 });
 
 let section = null;
@@ -43,20 +43,22 @@ api.getUser()
     userInfo.setUserInfo({
       name: user.name,
       info: user.about,
+      avatar: user.avatar,
     });
 
     userInfo.setUserId(user._id);
   })
-  .then(api.getCards()
-    .then( (cards) => {
-      section = new Section({
-        items: cards,
-        renderer: renderCard
-      }, '.places');
-      section.renderSection();
-    })
-    .catch(err => console.log(`Ошибка в index.js при создании карточек ${err}`))
-  )
+  .then(() => {
+    api.getCards()
+      .then(cards => {
+        section = new Section({
+          items: cards,
+          renderer: renderCard
+        }, '.places');
+        section.renderSection();
+      })
+      .catch(err => console.log(`Ошибка в index.js при создании карточек ${err}`))
+  })
   .catch(err => console.log(`Ошибка в index.js при запросе информации о пользователе ${err}`));
 
 //получение карточек
@@ -66,50 +68,56 @@ api.getUser()
 const editFormValidator = new FormValidator(validationConfig, formElementProfile);
 const cardFormValidator = new FormValidator(validationConfig, formElementPlace);
 const avatarFormValidator = new FormValidator(validationConfig, formElementAvatar)
+//валидация форм
+editFormValidator.enableValidation();
+cardFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 //экземпляр класса открытия попап картинки
 const popupWithImg = new PopupWithImage('.popup_element_image');
 
 //функция при открытии попап с редактированием профиля
-const profileSubmitHandler = ({name, info}, text) => {
+const handlerProfileFormSubmit = ({name, info}, text) => {
   //закрузка с сервера данных профиля
   addSave(text)
   api.editProfile({name, info})
     .then(user => {
       userInfo.setUserInfo({name: user.name, info: user.about})
     })
+    .then(() => popupEditClass.close())
     .catch(err => console.log(`Ошибка в index.js при редактировании информации о user ${err}`))
     .finally(() => removeSave(text))
 };
 //экземпляр класса для редактирования профиля
-const popupEditClass = new PopupWithForm('.popup_element_profile', profileSubmitHandler);
+const popupEditClass = new PopupWithForm('.popup_element_profile', handlerProfileFormSubmit);
 
 //аватар
-const avatarSubmitHandler = (avatar, text) => {
+const handlerAvatarFormSubmit = (avatar, text) => {
   //для редактирования аватара
   addSave(text)
   api.editAvatar(avatar)
     .then(avatar => {
       userInfo.setUserAvatar(avatar.avatar);
-      avatarFormValidator.disabledButton();
+      // avatarFormValidator.disabledButton();
     })
+    .then(() => popupAvatar.close())
     .catch(err => console.log(`Ошибка в index.js при редактировании avatar ${err}`))
     .finally(() => removeSave(text));
 }
 //экземпляр класса для редактирования аватара
-const popupAvatar = new PopupWithForm('.popup_element_avatar', avatarSubmitHandler);
+const popupAvatar = new PopupWithForm('.popup_element_avatar', handlerAvatarFormSubmit);
 
+const closePopupDeleteCard = () => popupDeleteCard.close();
 
+const popupDeleteCard = new PopupWithConfig('.popup_element_delete-card',
+  {clickHandleCallBack: closePopupDeleteCard});
 
-
-const closePopupDeleteCard = () => {
-        popupDeleteCard.close();
-};
-
-const popupDeleteCard = new PopupConfig('.popup_element_delete-card',
-  {
-  clickHandleCallBack: closePopupDeleteCard,
-});
+// const apiDeleteCard = (card) => {
+//   api.deleteCard(card._id)
+//     .then(() => card.deleteCardClass())
+//     .then(() => closePopupDeleteCard())
+//     .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
+// }
 
 //функция для рендара карточек
 function renderCard(objectCard) {
@@ -122,10 +130,12 @@ function renderCard(objectCard) {
     handleDeleteCard: (card) => {
       popupDeleteCard.open();
       popupDeleteCard.setSubmitAction(() => {
-      api.deleteCard(card._id)
-        .then(() => card.deleteCardClass())
-        .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
-        closePopupDeleteCard();
+        api.deleteCard(card._id)
+          .then(() => {
+            card.deleteCardClass()
+          })
+          .then(() => closePopupDeleteCard())
+          .catch(err => console.log(`Ошибка в index.js при удалении карточки ${err}`))
       })
     },
     addLikeCard: (objectCard) => {
@@ -140,20 +150,24 @@ function renderCard(objectCard) {
 };
 
 //функция для добавления карточки
-const placeSubmitHandler = (obj, text) => {
+const handlePlaceFormSubmit = (obj, text) => {
   //добавления на сервер карточки
   addSave(text);
   api.addCard({name: obj.title, link: obj.image})
     .then((obj) => {
       const cardAdd = renderCard(obj);
       section.addItem(cardAdd);
-      cardFormValidator.disabledButton();
+      // cardFormValidator.disabledButton();
     })
+    // .then(() => popupPlaceClass.close())
     .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
-    .finally(() => removeSave(text));
+    .finally(() => {
+      removeSave(text);
+      popupPlaceClass.close();
+    });
 };
 //экземпляр класса для добавления карточки
-const popupPlaceClass = new PopupWithForm('.popup_element_place', placeSubmitHandler);
+const popupPlaceClass = new PopupWithForm('.popup_element_place', handlePlaceFormSubmit);
 
 
 //слушатели на клик для открытия попап
@@ -164,9 +178,11 @@ btnPopupEdit.addEventListener("click", () => {
   infoInput.value = user.info;
   popupEditClass.open();
 });
-buttonAvatar.addEventListener('click', () => popupAvatar.open());
-btnPopupAdd.addEventListener('click', () => popupPlaceClass.open());
-//валидация форм
-editFormValidator.enableValidation();
-cardFormValidator.enableValidation();
-avatarFormValidator.enableValidation();
+buttonAvatar.addEventListener('click', () => {
+  avatarFormValidator.disabledButton();
+  popupAvatar.open();
+});
+btnPopupAdd.addEventListener('click', () => {
+  cardFormValidator.disabledButton();
+  popupPlaceClass.open();
+});

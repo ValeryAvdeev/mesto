@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-class PopupConfig extends Popup {
+class PopupWithConfig extends Popup {
   constructor(selector, {
     clickHandleCallBack
   }) {
@@ -14,26 +14,13 @@ class PopupConfig extends Popup {
   }
 
   _setEventListeners(){
-    this._buttonDelete.addEventListener('click', () => {
-      this._clickHandleCallBack()
-    });
+    this._buttonDelete.addEventListener('click', this._clickHandleCallBack)
     super._setEventListeners();
   }
   _removeListener() {
-    this._buttonDelete.removeEventListener('click', () => {
-      this._clickHandleCallBack()
-    });
+    this._buttonDelete.removeEventListener('click', this._clickHandleCallBack);
     super._removeListener();
-  }
-
-  close() {
-    this._removeListener();
-    super.close();
-  }
-
-  open() {
-    super.open();
   }
 }
 
-export default PopupConfig;
+export default PopupWithConfig;

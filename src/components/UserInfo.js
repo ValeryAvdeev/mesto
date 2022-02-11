@@ -1,10 +1,10 @@
 class UserInfo {
   // Принимает в конструктор объект с селекторами двух элементов:
   // элемента имени пользователя и элемента информации о себе.
-  constructor({ nameSelector, infoSelector, avatarSelector }) {
-    this._nameSelector = document.querySelector(nameSelector);
-    this._infoSelector = document.querySelector(infoSelector);
-    this._avatarSelector = document.querySelector(avatarSelector);
+  constructor({ name, info, avatar }) {
+    this._name = document.querySelector(name);
+    this._info = document.querySelector(info);
+    this._avatar = document.querySelector(avatar);
   }
 
   // Возвращает объект с данными пользователя
@@ -12,17 +12,17 @@ class UserInfo {
     this.inputValue = {};
 
     this.inputValue.id = this._id;
-    this.inputValue.avatar = this._avatarSelector.src;
-    this.inputValue.name = this._nameSelector.textContent;
-    this.inputValue.info = this._infoSelector.textContent;
+    this.inputValue.avatar = this._avatar.src;
+    this.inputValue.name = this._name.textContent;
+    this.inputValue.info = this._info.textContent;
 
     return this.inputValue;
   }
 
   // принимает новые данные пользователя и добавляет их на страницу
   setUserInfo({name, info}) {
-    this._nameSelector.textContent = name;
-    this._infoSelector.textContent = info;
+    this._name.textContent = name;
+    this._info.textContent = info;
   }
 
   setUserId(id) {
@@ -30,7 +30,7 @@ class UserInfo {
   }
 
   setUserAvatar(avatar) {
-    this._avatarSelector.src = avatar;
+    this._avatar.src = avatar;
   }
 
 }
