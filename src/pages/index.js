@@ -142,13 +142,11 @@ const handlePlaceFormSubmit = (obj, text) => {
     .then((obj) => {
       const cardAdd = renderCard(obj);
       section.addItem(cardAdd);
-      // cardFormValidator.disabledButton();
     })
     .then(() => popupPlaceClass.close())
     .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
     .finally(() => {
       removeSave(text);
-      // popupPlaceClass.close();
     });
 };
 //экземпляр класса для добавления карточки

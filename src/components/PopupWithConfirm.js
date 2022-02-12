@@ -11,13 +11,15 @@ class PopupWithConfirm extends Popup {
     this._clickHandleCallBack = action;
   }
 
+  _submit = () => this._clickHandleCallBack()
+
   _setEventListeners(){
-    this._buttonDelete.addEventListener('click', this._clickHandleCallBack);
+    this._buttonDelete.addEventListener('click', this._submit);
     super._setEventListeners();
   }
 
   _removeListener() {
-    this._buttonDelete.removeEventListener('click', this._clickHandleCallBack);
+    this._buttonDelete.removeEventListener('click', this._submit);
     super._removeListener();
   }
 }
