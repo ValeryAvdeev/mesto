@@ -1,6 +1,6 @@
 import Popup from "./Popup.js";
 
-class PopupWithConfig extends Popup {
+class PopupWithConfirm extends Popup {
   constructor(selector, { clickHandleCallBack }) {
     super(selector); //наследование
     this._clickHandleCallBack = clickHandleCallBack; //колбек функция
@@ -12,9 +12,14 @@ class PopupWithConfig extends Popup {
   }
 
   _setEventListeners(){
-    this._buttonDelete.addEventListener('click', () => this._clickHandleCallBack());
+    this._buttonDelete.addEventListener('click', this._clickHandleCallBack);
     super._setEventListeners();
+  }
+
+  _removeListener() {
+    this._buttonDelete.removeEventListener('click', this._clickHandleCallBack);
+    super._removeListener();
   }
 }
 
-export default PopupWithConfig;
+export default PopupWithConfirm;

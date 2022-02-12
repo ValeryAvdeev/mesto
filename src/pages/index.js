@@ -17,7 +17,7 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import PopupWithConfig from "../components/PopupWithConfig.js";
+import PopupWithConfirm from "../components/PopupWithConfirm.js";
 import {
   addSave,
   removeSave
@@ -91,7 +91,6 @@ const handlerAvatarFormSubmit = (avatar, text) => {
   api.editAvatar(avatar)
     .then(avatar => {
       userInfo.setUserAvatar(avatar.avatar);
-      // avatarFormValidator.disabledButton();
     })
     .then(() => popupAvatar.close())
     .catch(err => console.log(`Ошибка в index.js при редактировании avatar ${err}`))
@@ -102,7 +101,7 @@ const popupAvatar = new PopupWithForm('.popup_element_avatar', handlerAvatarForm
 
 const closePopupDeleteCard = () => popupDeleteCard.close();
 
-const popupDeleteCard = new PopupWithConfig('.popup_element_delete-card',
+const popupDeleteCard = new PopupWithConfirm('.popup_element_delete-card',
   {clickHandleCallBack: closePopupDeleteCard});
 
 const apiDeleteCard = (card) => {
@@ -145,11 +144,11 @@ const handlePlaceFormSubmit = (obj, text) => {
       section.addItem(cardAdd);
       // cardFormValidator.disabledButton();
     })
-    // .then(() => popupPlaceClass.close())
+    .then(() => popupPlaceClass.close())
     .catch(err => console.log(`Ошибка в index.js при добавлении карточки ${err}`))
     .finally(() => {
       removeSave(text);
-      popupPlaceClass.close();
+      // popupPlaceClass.close();
     });
 };
 //экземпляр класса для добавления карточки
