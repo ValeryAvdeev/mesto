@@ -1,0 +1,12 @@
+.places {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-template-rows: 362px;
+  gap: 20px 17px;
+}
+
+@media screen and (max-width: 900px) {
+  .places {
+    justify-content: space-around;
+  }
+}

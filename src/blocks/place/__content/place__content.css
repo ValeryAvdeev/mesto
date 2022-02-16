@@ -1,0 +1,13 @@
+.place__content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 15px 22px 21px;
+}
+
+@media screen and (max-width: 320px) {
+  .place__content{
+    margin: 23px 21px 22px 15px;
+  }
+}

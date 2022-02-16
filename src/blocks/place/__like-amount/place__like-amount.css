@@ -1,0 +1,10 @@
+.place__like-amount {
+  font-family: "Inter", "Arial", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  padding-top: 3px;
+  margin-right: 5px;
+}

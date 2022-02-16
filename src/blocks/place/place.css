@@ -1,0 +1,15 @@
+.place {
+  position: relative;
+  max-width: 282px;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1024px) {
+  .place {
+    margin: auto;
+  }
+}

@@ -1,0 +1,17 @@
+.avatar {
+  position: relative;
+  min-width: 120px;
+  min-height: 120px;
+  margin-top: 40px;
+}
+
+.avatar:hover .avatar__over {
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .avatar {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

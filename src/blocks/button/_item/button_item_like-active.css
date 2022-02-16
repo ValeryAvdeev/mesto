@@ -1,0 +1,11 @@
+.button_item_like-active {
+  width: 22px;
+  height: 19px;
+  background: url("../../../images/active_like.svg") center;
+  border: 0;
+  margin-right: 5px;
+}
+
+.button_item_like-active:hover {
+  opacity: 1;
+}
