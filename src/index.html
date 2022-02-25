@@ -186,7 +186,8 @@
 <div class="popup popup_element_delete-card">
   <div class="popup__overlay popup__overlay_select_delete-card"></div>
   <div class="popup__content">
-      <h3 class="popup__title">Вы уверены?</h3>
+    <form name="popup" class="form form_element_delete-card">
+    <h3 class="popup__title">Вы уверены?</h3>
       <button
         type="button"
         class="popup__button  popup__delete-card"
@@ -194,10 +195,11 @@
         Да
       </button>
     <button
-      type="button"
+      type="submit"
       aria-label="Кнопка закрытия редактора фотографии профеля"
       class="popup__close popup__close_element_delete-card"
     ></button>
+    </form>
   </div>
 </div>
 
